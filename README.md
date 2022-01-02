@@ -2,7 +2,7 @@
 
 Android空壳模板工程(kotlin版本)，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate、XHttp2、友盟统计和walle多渠道打包)
 
-**【注意】** 本模板适用于Android Studio 4.0及以上版本，如果你的Android Studio低于 4.0版本，可使用[butterknife](https://github.com/xuexiangjys/TemplateAppProject/tree/butterknife)分支。
+**【注意】** 本模板适用于Android Studio 4.0及以上版本。
 
 
 ## 关于我
