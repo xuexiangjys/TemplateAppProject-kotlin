@@ -79,9 +79,9 @@ class NewsFragment : BaseFragment<FragmentNewsBinding?>() {
      */
     override fun initViews() {
         val virtualLayoutManager = VirtualLayoutManager(requireContext())
-        binding!!.recyclerView.layoutManager = virtualLayoutManager
+        binding?.recyclerView?.layoutManager = virtualLayoutManager
         val viewPool = RecycledViewPool()
-        binding!!.recyclerView.setRecycledViewPool(viewPool)
+        binding?.recyclerView?.setRecycledViewPool(viewPool)
         viewPool.setMaxRecycledViews(0, 10)
 
         //轮播条
@@ -195,26 +195,26 @@ class NewsFragment : BaseFragment<FragmentNewsBinding?>() {
         delegateAdapter.addAdapter(commonAdapter)
         delegateAdapter.addAdapter(titleAdapter)
         delegateAdapter.addAdapter(mNewsAdapter)
-        binding!!.recyclerView.adapter = delegateAdapter
+        binding?.recyclerView?.adapter = delegateAdapter
     }
 
     override fun initListeners() {
         //下拉刷新
-        binding!!.refreshLayout.setOnRefreshListener { refreshLayout: RefreshLayout ->
+        binding?.refreshLayout?.setOnRefreshListener { refreshLayout: RefreshLayout ->
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.layout.postDelayed({
-                mNewsAdapter!!.refresh(demoNewInfos)
+                mNewsAdapter?.refresh(demoNewInfos)
                 refreshLayout.finishRefresh()
             }, 1000)
         }
         //上拉加载
-        binding!!.refreshLayout.setOnLoadMoreListener { refreshLayout: RefreshLayout ->
+        binding?.refreshLayout?.setOnLoadMoreListener { refreshLayout: RefreshLayout ->
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.layout.postDelayed({
-                mNewsAdapter!!.loadMore(demoNewInfos)
+                mNewsAdapter?.loadMore(demoNewInfos)
                 refreshLayout.finishLoadMore()
             }, 1000)
         }
-        binding!!.refreshLayout.autoRefresh() //第一次进入触发自动刷新，演示效果
+        binding?.refreshLayout?.autoRefresh() //第一次进入触发自动刷新，演示效果
     }
 }

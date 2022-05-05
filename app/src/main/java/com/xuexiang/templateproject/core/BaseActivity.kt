@@ -57,7 +57,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
 
     override fun getCustomRootView(): View? {
         binding = viewBindingInflate(layoutInflater)
-        return if (binding != null) binding!!.root else null
+        return binding?.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

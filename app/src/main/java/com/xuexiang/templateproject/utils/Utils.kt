@@ -83,23 +83,23 @@ class Utils private constructor() {
                                 ResUtils.getString(R.string.app_name)
                             ),
                             ResUtils.getString(R.string.lab_look_again),
-                            { dialog, which ->
+                            { dialog, _ ->
                                 dialog.dismiss()
                                 showPrivacyDialog(context, submitListener)
                             },
                             ResUtils.getString(R.string.lab_still_disagree)
-                        ) { dialog, which ->
+                        ) { dialog, _ ->
                             dialog.dismiss()
                             DialogLoader.getInstance().showConfirmDialog(
                                 context,
                                 ResUtils.getString(R.string.content_think_about_it_again),
                                 ResUtils.getString(R.string.lab_look_again),
-                                { dialog, which ->
+                                { dialog, _ ->
                                     dialog.dismiss()
                                     showPrivacyDialog(context, submitListener)
                                 },
                                 ResUtils.getString(R.string.lab_exit_app)
-                            ) { dialog, which ->
+                            ) { dialog, _ ->
                                 dialog.dismiss()
                                 XUtil.exitApp()
                             }
@@ -107,7 +107,7 @@ class Utils private constructor() {
                     }.build()
             dialog.setContent(getPrivacyContent(context))
             //开始响应点击事件
-            dialog.contentView!!.movementMethod = LinkMovementMethod.getInstance()
+            dialog.contentView?.movementMethod = LinkMovementMethod.getInstance()
             dialog.show()
             return dialog
         }

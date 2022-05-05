@@ -17,7 +17,6 @@
 package com.xuexiang.templateproject.fragment.other
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.xuexiang.templateproject.R
 import com.xuexiang.templateproject.core.BaseFragment
@@ -67,17 +66,17 @@ class AboutFragment : BaseFragment<FragmentAboutBinding?>() {
                     isImmersive = false
                 )
             }
-            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.title_privacy_protocol))) {
+            .addItemView(binding?.aboutList?.createItemView(resources.getString(R.string.title_privacy_protocol))) {
                 gotoProtocol(
                     this,
-                    true,
-                    false
+                    isPrivacy = true,
+                    isImmersive = false
                 )
             }
-            .addTo(binding!!.aboutList)
+            .addTo(binding?.aboutList)
         val dateFormat = SimpleDateFormat("yyyy", Locale.CHINA)
         val currentYear = dateFormat.format(Date())
-        binding!!.tvCopyright.text =
+        binding?.tvCopyright?.text =
             String.format(resources.getString(R.string.about_copyright), currentYear)
     }
 

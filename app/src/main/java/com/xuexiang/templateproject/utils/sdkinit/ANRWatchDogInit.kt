@@ -58,7 +58,7 @@ class ANRWatchDogInit private constructor() {
         fun init() {
             //这里设置监听的间隔为2秒
             aNRWatchDog = ANRWatchDog(2000)
-            aNRWatchDog!!.setANRInterceptor { duration: Long ->
+            aNRWatchDog?.setANRInterceptor { duration: Long ->
                 val ret = ANR_DURATION - duration
                 if (ret > 0) {
                     Logger.wTag(
@@ -67,7 +67,7 @@ class ANRWatchDogInit private constructor() {
                     )
                 }
                 ret
-            }.setANRListener(SILENT_LISTENER).start()
+            }?.setANRListener(SILENT_LISTENER)?.start()
         }
     }
 

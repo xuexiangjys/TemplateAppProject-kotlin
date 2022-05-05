@@ -50,10 +50,10 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
             cbIgnore.setOnCheckedChangeListener(this)
         }
         ivClose?.setOnClickListener(this)
-        mTvPrevious!!.setOnClickListener(this)
-        mTvNext!!.setOnClickListener(this)
-        mTvPrevious!!.isEnabled = false
-        mTvNext!!.isEnabled = true
+        mTvPrevious?.setOnClickListener(this)
+        mTvNext?.setOnClickListener(this)
+        mTvPrevious?.isEnabled = false
+        mTvNext?.isEnabled = true
         setCancelable(false)
         setCanceledOnTouchOutside(true)
     }
@@ -65,7 +65,7 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
      */
     private fun updateTips(tips: List<TipInfo>) {
         mTips = tips
-        if (mTips != null && mTips!!.size > 0 && mTvContent != null) {
+        if (mTips != null && mTips!!.isNotEmpty() && mTvContent != null) {
             mIndex = 0
             showRichText(mTips!![mIndex])
         }
@@ -77,18 +77,22 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
      * @param index 索引
      */
     private fun switchTipInfo(index: Int) {
-        if (mTips != null && mTips!!.size > 0 && mTvContent != null) {
+        if (mTips != null && mTips!!.isNotEmpty() && mTvContent != null) {
             if (index >= 0 && index <= mTips!!.size - 1) {
                 showRichText(mTips!![index])
-                if (index == 0) {
-                    mTvPrevious!!.isEnabled = false
-                    mTvNext!!.isEnabled = true
-                } else if (index == mTips!!.size - 1) {
-                    mTvPrevious!!.isEnabled = true
-                    mTvNext!!.isEnabled = false
-                } else {
-                    mTvPrevious!!.isEnabled = true
-                    mTvNext!!.isEnabled = true
+                when (index) {
+                    0 -> {
+                        mTvPrevious?.isEnabled = false
+                        mTvNext?.isEnabled = true
+                    }
+                    mTips!!.size - 1 -> {
+                        mTvPrevious?.isEnabled = true
+                        mTvNext?.isEnabled = false
+                    }
+                    else -> {
+                        mTvPrevious?.isEnabled = true
+                        mTvNext?.isEnabled = true
+                    }
                 }
             }
         }
@@ -100,7 +104,7 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
      * @param tipInfo 提示信息
      */
     private fun showRichText(tipInfo: TipInfo) {
-        mTvTitle!!.text = tipInfo.title
+        mTvTitle?.text = tipInfo.title
         RichText.fromHtml(tipInfo.content)
             .bind(this)
             .into(mTvContent)

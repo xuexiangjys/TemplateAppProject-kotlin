@@ -43,14 +43,14 @@ class SimpleListAdapter(context: Context?, data: List<Map<String?, String?>?>?) 
     }
 
     override fun convert(holder: ViewHolder, item: Map<String?, String?>, position: Int) {
-        holder.mTvTitle!!.text =
+        holder.mTvTitle?.text =
             item[KEY_TITLE]
         if (!StringUtils.isEmpty(item[KEY_SUB_TITLE])) {
-            holder.mTvSubTitle!!.text =
+            holder.mTvSubTitle?.text =
                 item[KEY_SUB_TITLE]
-            holder.mTvSubTitle!!.visibility = View.VISIBLE
+            holder.mTvSubTitle?.visibility = View.VISIBLE
         } else {
-            holder.mTvSubTitle!!.visibility = View.GONE
+            holder.mTvSubTitle?.visibility = View.GONE
         }
     }
 
