@@ -16,21 +16,20 @@
  */
 package com.xuexiang.templateproject.fragment.other
 
-import com.xuexiang.templateproject.utils.TokenUtils.Companion.handleLogoutSuccess
-import com.xuexiang.templateproject.core.BaseFragment
-import com.xuexiang.xui.widget.textview.supertextview.SuperTextView.OnSuperTextViewClickListener
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.xuexiang.xaop.annotation.SingleClick
-import com.xuexiang.xui.widget.textview.supertextview.SuperTextView
 import com.xuexiang.templateproject.R
-import com.xuexiang.templateproject.utils.XToastUtils
-import com.xuexiang.xui.widget.dialog.DialogLoader
-import android.content.DialogInterface
+import com.xuexiang.templateproject.core.BaseFragment
 import com.xuexiang.templateproject.databinding.FragmentSettingsBinding
-import com.xuexiang.xutil.XUtil
-import com.xuexiang.templateproject.utils.TokenUtils
+import com.xuexiang.templateproject.utils.TokenUtils.Companion.handleLogoutSuccess
+import com.xuexiang.templateproject.utils.XToastUtils
+import com.xuexiang.xaop.annotation.SingleClick
 import com.xuexiang.xpage.annotation.Page
+import com.xuexiang.xui.widget.dialog.DialogLoader
+import com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+import com.xuexiang.xui.widget.textview.supertextview.SuperTextView.OnSuperTextViewClickListener
+import com.xuexiang.xutil.XUtil
 
 /**
  * @author xuexiang
@@ -38,6 +37,7 @@ import com.xuexiang.xpage.annotation.Page
  */
 @Page(name = "设置")
 class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), OnSuperTextViewClickListener {
+
     override fun viewBindingInflate(
         inflater: LayoutInflater,
         container: ViewGroup
@@ -46,12 +46,12 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), OnSuperTextVi
     }
 
     override fun initViews() {
-        binding!!.menuCommon.setOnSuperTextViewClickListener(this)
-        binding!!.menuPrivacy.setOnSuperTextViewClickListener(this)
-        binding!!.menuPush.setOnSuperTextViewClickListener(this)
-        binding!!.menuHelper.setOnSuperTextViewClickListener(this)
-        binding!!.menuChangeAccount.setOnSuperTextViewClickListener(this)
-        binding!!.menuLogout.setOnSuperTextViewClickListener(this)
+        binding?.menuCommon?.setOnSuperTextViewClickListener(this)
+        binding?.menuPrivacy?.setOnSuperTextViewClickListener(this)
+        binding?.menuPush?.setOnSuperTextViewClickListener(this)
+        binding?.menuHelper?.setOnSuperTextViewClickListener(this)
+        binding?.menuChangeAccount?.setOnSuperTextViewClickListener(this)
+        binding?.menuLogout?.setOnSuperTextViewClickListener(this)
     }
 
     @SingleClick
@@ -66,13 +66,13 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), OnSuperTextVi
                 context,
                 getString(R.string.lab_logout_confirm),
                 getString(R.string.lab_yes),
-                { dialog: DialogInterface, which: Int ->
+                { dialog: DialogInterface, _: Int ->
                     dialog.dismiss()
                     XUtil.getActivityLifecycleHelper().exit()
                     handleLogoutSuccess()
                 },
                 getString(R.string.lab_no)
-            ) { dialog: DialogInterface, which: Int -> dialog.dismiss() }
+            ) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
         }
     }
 }

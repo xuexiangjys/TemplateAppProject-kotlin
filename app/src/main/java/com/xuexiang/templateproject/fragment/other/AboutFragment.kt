@@ -36,37 +36,38 @@ import java.util.*
  */
 @Page(name = "关于")
 class AboutFragment : BaseFragment<FragmentAboutBinding?>() {
+
     override fun initViews() {
-        binding!!.tvVersion.text = String.format("版本号：%s", AppUtils.getAppVersionName())
+        binding?.tvVersion?.text = String.format("版本号：%s", AppUtils.getAppVersionName())
         XUIGroupListView.newSection(context)
-            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.about_item_homepage))) { v: View? ->
+            .addItemView(binding?.aboutList?.createItemView(resources.getString(R.string.about_item_homepage))) {
                 AgentWebActivity.goWeb(
                     context, getString(R.string.url_project_github)
                 )
             }
-            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.about_item_author_github))) { v: View? ->
+            .addItemView(binding?.aboutList?.createItemView(resources.getString(R.string.about_item_author_github))) {
                 AgentWebActivity.goWeb(
                     context, getString(R.string.url_author_github)
                 )
             }
-            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.about_item_donation_link))) { v: View? ->
+            .addItemView(binding?.aboutList?.createItemView(resources.getString(R.string.about_item_donation_link))) {
                 AgentWebActivity.goWeb(
                     context, getString(R.string.url_donation_link)
                 )
             }
-            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.about_item_add_qq_group))) { v: View? ->
+            .addItemView(binding?.aboutList?.createItemView(resources.getString(R.string.about_item_add_qq_group))) {
                 AgentWebActivity.goWeb(
                     context, getString(R.string.url_add_qq_group)
                 )
             }
-            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.title_user_protocol))) { v: View? ->
+            .addItemView(binding?.aboutList?.createItemView(resources.getString(R.string.title_user_protocol))) {
                 gotoProtocol(
                     this,
-                    false,
-                    false
+                    isPrivacy = false,
+                    isImmersive = false
                 )
             }
-            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.title_privacy_protocol))) { v: View? ->
+            .addItemView(binding!!.aboutList.createItemView(resources.getString(R.string.title_privacy_protocol))) {
                 gotoProtocol(
                     this,
                     true,

@@ -40,7 +40,7 @@ abstract class BaseContainerFragment : XPageContainerListFragment() {
         initListeners()
     }
 
-    protected fun initTitle(): TitleBar {
+    private fun initTitle(): TitleBar {
         return TitleUtils.addTitleBarDynamic(
             rootView as ViewGroup,
             pageTitle

@@ -37,8 +37,7 @@ class LoginActivity : BaseActivity<ViewBinding?>() {
         openPage(LoginFragment::class.java, intent.extras)
     }
 
-    override val isSupportSlideBack: Boolean
-        protected get() = false
+    override val isSupportSlideBack = false
 
     override fun initStatusBarStyle() {
         StatusBarUtils.initStatusBarStyle(this, false, Colors.WHITE)

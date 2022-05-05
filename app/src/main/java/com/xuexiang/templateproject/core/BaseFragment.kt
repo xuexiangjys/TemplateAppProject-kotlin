@@ -49,16 +49,15 @@ import java.lang.reflect.Type
  */
 abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
     private var mIProgressLoader: IProgressLoader? = null
-
     /**
      * ViewBinding
      */
     var binding: Binding? = null
         protected set
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View {
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View? {
         binding = viewBindingInflate(inflater, container)
-        return binding!!.root
+        return binding?.root
     }
 
     /**
@@ -111,7 +110,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
         if (mIProgressLoader == null) {
             mIProgressLoader = ProgressLoader.create(context, message)
         } else {
-            mIProgressLoader!!.updateMessage(message)
+            mIProgressLoader?.updateMessage(message)
         }
         return mIProgressLoader
     }
@@ -127,9 +126,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
     }
 
     override fun onDestroyView() {
-        if (mIProgressLoader != null) {
-            mIProgressLoader!!.dismissLoading()
-        }
+        mIProgressLoader?.dismissLoading()
         super.onDestroyView()
         binding = null
     }
@@ -368,9 +365,9 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @param object 需要序列化的对象
      * @return 序列化结果
      */
-    fun serializeObject(`object`: Any?): String {
+    fun serializeObject(target: Any?): String {
         return XRouter.getInstance().navigation(SerializationService::class.java)
-            .object2Json(`object`)
+            .object2Json(target)
     }
 
     /**

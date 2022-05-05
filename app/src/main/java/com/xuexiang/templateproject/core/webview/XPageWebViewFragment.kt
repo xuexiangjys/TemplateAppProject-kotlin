@@ -71,7 +71,7 @@ import java.util.*
  */
 @Page(params = [AgentWebFragment.KEY_URL])
 class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnClickListener {
-    protected var mAgentWeb: AgentWeb? = null
+    private var mAgentWeb: AgentWeb? = null
     private var mPopupMenu: PopupMenu? = null
     private var mDownloadingService: DownloadingService? = null
     override fun viewBindingInflate(
@@ -120,16 +120,16 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
         }
         pageNavigator(View.GONE)
         // 得到 AgentWeb 最底层的控件
-        addBackgroundChild(mAgentWeb!!.webCreator.webParentLayout)
+        addBackgroundChild(mAgentWeb?.webCreator!!.webParentLayout)
 
         // AgentWeb 没有把WebView的功能全面覆盖 ，所以某些设置 AgentWeb 没有提供，请从WebView方面入手设置。
-        mAgentWeb!!.webCreator.webView.overScrollMode = WebView.OVER_SCROLL_NEVER
+        mAgentWeb?.webCreator?.webView?.overScrollMode = WebView.OVER_SCROLL_NEVER
     }
 
-    protected val webLayout: IWebLayout<*, *>
-        protected get() = WebLayout(activity)
+    private val webLayout: IWebLayout<*, *>
+        get() = WebLayout(activity)
 
-    protected fun addBackgroundChild(frameLayout: FrameLayout) {
+    private fun addBackgroundChild(frameLayout: FrameLayout) {
         val textView = TextView(frameLayout.context)
         textView.text = "技术由 AgentWeb 提供"
         textView.textSize = 16f

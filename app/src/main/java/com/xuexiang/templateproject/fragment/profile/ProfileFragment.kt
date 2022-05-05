@@ -55,9 +55,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding?>(), OnSuperTextView
      * 初始化控件
      */
     override fun initViews() {}
+
     override fun initListeners() {
-        binding!!.menuSettings.setOnSuperTextViewClickListener(this)
-        binding!!.menuAbout.setOnSuperTextViewClickListener(this)
+        binding?.menuSettings?.setOnSuperTextViewClickListener(this)
+        binding?.menuAbout?.setOnSuperTextViewClickListener(this)
     }
 
     @SingleClick

@@ -74,15 +74,14 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
         initListeners()
     }
 
-    override val isSupportSlideBack: Boolean
-        protected get() = false
+    override val isSupportSlideBack = false
 
     private fun initViews() {
         WidgetUtils.clearActivityBackground(this)
         mTitles = ResUtils.getStringArray(R.array.home_titles)
-        binding!!.includeMain.toolbar.title = mTitles[0]
-        binding!!.includeMain.toolbar.inflateMenu(R.menu.menu_main)
-        binding!!.includeMain.toolbar.setOnMenuItemClickListener(this)
+        binding?.includeMain?.toolbar?.title = mTitles[0]
+        binding?.includeMain?.toolbar?.inflateMenu(R.menu.menu_main)
+        binding?.includeMain?.toolbar?.setOnMenuItemClickListener(this)
         initHeader()
 
         //主页内容填充
@@ -92,8 +91,8 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
             ProfileFragment()
         )
         val adapter = FragmentAdapter(supportFragmentManager, fragments)
-        binding!!.includeMain.viewPager.offscreenPageLimit = mTitles.size - 1
-        binding!!.includeMain.viewPager.adapter = adapter
+        binding?.includeMain?.viewPager?.offscreenPageLimit = mTitles.size - 1
+        binding?.includeMain?.viewPager?.adapter = adapter
     }
 
     private fun initData() {
@@ -102,64 +101,67 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
     }
 
     private fun initHeader() {
-        binding!!.navView.itemIconTintList = null
-        val headerView = binding!!.navView.getHeaderView(0)
-        val navHeader = headerView.findViewById<LinearLayout>(R.id.nav_header)
-        val ivAvatar: RadiusImageView = headerView.findViewById(R.id.iv_avatar)
-        val tvAvatar = headerView.findViewById<TextView>(R.id.tv_avatar)
-        val tvSign = headerView.findViewById<TextView>(R.id.tv_sign)
+        binding?.navView?.itemIconTintList = null
+        val headerView = binding?.navView?.getHeaderView(0)
+        val navHeader = headerView?.findViewById<LinearLayout>(R.id.nav_header)
+        val ivAvatar: RadiusImageView? = headerView?.findViewById(R.id.iv_avatar)
+        val tvAvatar = headerView?.findViewById<TextView>(R.id.tv_avatar)
+        val tvSign = headerView?.findViewById<TextView>(R.id.tv_sign)
         if (isColorDark(ThemeUtils.resolveColor(this, R.attr.colorAccent))) {
-            tvAvatar.setTextColor(Colors.WHITE)
-            tvSign.setTextColor(Colors.WHITE)
+            tvAvatar?.setTextColor(Colors.WHITE)
+            tvSign?.setTextColor(Colors.WHITE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ivAvatar.imageTintList =
+                ivAvatar?.imageTintList =
                     ResUtils.getColors(R.color.xui_config_color_white)
             }
         } else {
-            tvAvatar.setTextColor(ThemeUtils.resolveColor(this, R.attr.xui_config_color_title_text))
-            tvSign.setTextColor(ThemeUtils.resolveColor(this, R.attr.xui_config_color_explain_text))
+            tvAvatar?.setTextColor(ThemeUtils.resolveColor(this, R.attr.xui_config_color_title_text))
+            tvSign?.setTextColor(ThemeUtils.resolveColor(this, R.attr.xui_config_color_explain_text))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ivAvatar.imageTintList = ResUtils.getColors(R.color.xui_config_color_gray_3)
+                ivAvatar?.imageTintList = ResUtils.getColors(R.color.xui_config_color_gray_3)
             }
         }
 
         // TODO: 2019-10-09 初始化数据
-        ivAvatar.setImageResource(R.drawable.ic_default_head)
-        tvAvatar.setText(R.string.app_name)
-        tvSign.text = "这个家伙很懒，什么也没有留下～～"
-        navHeader.setOnClickListener(this)
+        ivAvatar?.setImageResource(R.drawable.ic_default_head)
+        tvAvatar?.setText(R.string.app_name)
+        tvSign?.text = "这个家伙很懒，什么也没有留下～～"
+        navHeader?.setOnClickListener(this)
     }
 
-    protected fun initListeners() {
+    private fun initListeners() {
         val toggle = ActionBarDrawerToggle(
             this,
-            binding!!.drawerLayout,
-            binding!!.includeMain.toolbar,
+            binding?.drawerLayout,
+            binding?.includeMain?.toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        binding!!.drawerLayout.addDrawerListener(toggle)
+        binding?.drawerLayout?.addDrawerListener(toggle)
         toggle.syncState()
 
         //侧边栏点击事件
-        binding!!.navView.setNavigationItemSelectedListener { menuItem: MenuItem ->
+        binding?.navView?.setNavigationItemSelectedListener { menuItem: MenuItem ->
             if (menuItem.isCheckable) {
-                binding!!.drawerLayout.closeDrawers()
+                binding?.drawerLayout?.closeDrawers()
                 return@setNavigationItemSelectedListener handleNavigationItemSelected(menuItem)
             } else {
-                val id = menuItem.itemId
-                if (id == R.id.nav_settings) {
-                    openNewPage(SettingsFragment::class.java)
-                } else if (id == R.id.nav_about) {
-                    openNewPage(AboutFragment::class.java)
-                } else {
-                    XToastUtils.toast("点击了:" + menuItem.title)
+                when (menuItem.itemId) {
+                    R.id.nav_settings -> {
+                        openNewPage(SettingsFragment::class.java)
+                    }
+                    R.id.nav_about -> {
+                        openNewPage(AboutFragment::class.java)
+                    }
+                    else -> {
+                        XToastUtils.toast("点击了:" + menuItem.title)
+                    }
                 }
             }
             true
         }
         //主页事件监听
-        binding!!.includeMain.viewPager.addOnPageChangeListener(object :
+        binding?.includeMain?.viewPager?.addOnPageChangeListener(object :
             ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
                 position: Int,
@@ -169,15 +171,15 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
             }
 
             override fun onPageSelected(position: Int) {
-                val item = binding!!.includeMain.bottomNavigation.menu.getItem(position)
-                binding!!.includeMain.toolbar.title = item.title
-                item.isChecked = true
+                val item = binding?.includeMain?.bottomNavigation?.menu?.getItem(position)
+                binding?.includeMain?.toolbar?.title = item?.title
+                item?.isChecked = true
                 updateSideNavStatus(item)
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         })
-        binding!!.includeMain.bottomNavigation.setOnNavigationItemSelectedListener(this)
+        binding?.includeMain?.bottomNavigation?.setOnNavigationItemSelectedListener(this)
     }
 
     /**
@@ -189,8 +191,8 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
     private fun handleNavigationItemSelected(menuItem: MenuItem): Boolean {
         val index = CollectionUtils.arrayIndexOf(mTitles, menuItem.title)
         if (index != -1) {
-            binding!!.includeMain.toolbar.title = menuItem.title
-            binding!!.includeMain.viewPager.setCurrentItem(index, false)
+            binding?.includeMain?.toolbar?.title = menuItem.title
+            binding?.includeMain?.viewPager?.setCurrentItem(index, false)
             return true
         }
         return false
@@ -223,8 +225,8 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
         val index = CollectionUtils.arrayIndexOf(mTitles, menuItem.title)
         if (index != -1) {
-            binding!!.includeMain.toolbar.title = menuItem.title
-            binding!!.includeMain.viewPager.setCurrentItem(index, false)
+            binding?.includeMain?.toolbar?.title = menuItem.title
+            binding?.includeMain?.viewPager?.setCurrentItem(index, false)
             updateSideNavStatus(menuItem)
             return true
         }
@@ -236,10 +238,12 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
      *
      * @param menuItem
      */
-    private fun updateSideNavStatus(menuItem: MenuItem) {
-        val side = binding!!.navView.menu.findItem(menuItem.itemId)
-        if (side != null) {
-            side.isChecked = true
+    private fun updateSideNavStatus(menuItem: MenuItem?) {
+        menuItem?.let {
+            val side = binding?.navView?.menu?.findItem(it.itemId)
+            if (side != null) {
+                side.isChecked = true
+            }
         }
     }
 

@@ -53,7 +53,7 @@ import com.xuexiang.xutil.app.ActivityUtils
  */
 @Page(anim = CoreAnim.none)
 class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListener {
-    
+
     private var mJumpView: View? = null
     private var mCountDownHelper: CountDownButtonHelper? = null
     override fun viewBindingInflate(
@@ -81,34 +81,34 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListene
     }
 
     override fun initViews() {
-        mCountDownHelper = CountDownButtonHelper(binding!!.btnGetVerifyCode, 60)
+        mCountDownHelper = CountDownButtonHelper(binding?.btnGetVerifyCode, 60)
         //隐私政策弹窗
         if (!isAgreePrivacy) {
-            showPrivacyDialog(requireContext()) { dialog: MaterialDialog, which: DialogAction? ->
+            showPrivacyDialog(requireContext()) { dialog: MaterialDialog, _: DialogAction? ->
                 dialog.dismiss()
                 handleSubmitPrivacy()
             }
         }
         val isAgreePrivacy = isAgreePrivacy
-        binding!!.cbProtocol.isChecked = isAgreePrivacy
+        binding?.cbProtocol?.isChecked = isAgreePrivacy
         refreshButton(isAgreePrivacy)
-        binding!!.cbProtocol.setOnCheckedChangeListener { buttonView: CompoundButton?, isChecked: Boolean ->
+        binding?.cbProtocol?.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
             SettingUtils.isAgreePrivacy = isChecked
             refreshButton(isChecked)
         }
     }
 
     override fun initListeners() {
-        binding!!.btnGetVerifyCode.setOnClickListener(this)
-        binding!!.btnLogin.setOnClickListener(this)
-        binding!!.tvOtherLogin.setOnClickListener(this)
-        binding!!.tvForgetPassword.setOnClickListener(this)
-        binding!!.tvUserProtocol.setOnClickListener(this)
-        binding!!.tvPrivacyProtocol.setOnClickListener(this)
+        binding?.btnGetVerifyCode?.setOnClickListener(this)
+        binding?.btnLogin?.setOnClickListener(this)
+        binding?.tvOtherLogin?.setOnClickListener(this)
+        binding?.tvForgetPassword?.setOnClickListener(this)
+        binding?.tvUserProtocol?.setOnClickListener(this)
+        binding?.tvPrivacyProtocol?.setOnClickListener(this)
     }
 
     private fun refreshButton(isChecked: Boolean) {
-        ViewUtils.setEnabled(binding!!.btnLogin, isChecked)
+        ViewUtils.setEnabled(binding?.btnLogin, isChecked)
         ViewUtils.setEnabled(mJumpView, isChecked)
     }
 
@@ -123,15 +123,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListene
     override fun onClick(v: View) {
         val id = v.id
         if (id == R.id.btn_get_verify_code) {
-            if (binding!!.etPhoneNumber.validate()) {
-                getVerifyCode(binding!!.etPhoneNumber.editValue)
+            if (binding?.etPhoneNumber!!.validate()) {
+                getVerifyCode(binding?.etPhoneNumber!!.editValue)
             }
         } else if (id == R.id.btn_login) {
-            if (binding!!.etPhoneNumber.validate()) {
-                if (binding!!.etVerifyCode.validate()) {
+            if (binding?.etPhoneNumber!!.validate()) {
+                if (binding?.etVerifyCode!!.validate()) {
                     loginByVerifyCode(
-                        binding!!.etPhoneNumber.editValue,
-                        binding!!.etVerifyCode.editValue
+                        binding?.etPhoneNumber!!.editValue,
+                        binding?.etVerifyCode!!.editValue
                     )
                 }
             }
@@ -140,9 +140,9 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListene
         } else if (id == R.id.tv_forget_password) {
             XToastUtils.info("忘记密码")
         } else if (id == R.id.tv_user_protocol) {
-            gotoProtocol(this, false, true)
+            gotoProtocol(this, isPrivacy = false, isImmersive = true)
         } else if (id == R.id.tv_privacy_protocol) {
-            gotoProtocol(this, true, true)
+            gotoProtocol(this, isPrivacy = true, isImmersive = true)
         }
     }
 
@@ -152,7 +152,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListene
     private fun getVerifyCode(phoneNumber: String) {
         // TODO: 2020/8/29 这里只是界面演示而已
         XToastUtils.warning("只是演示，验证码请随便输")
-        mCountDownHelper!!.start()
+        mCountDownHelper?.start()
     }
 
     /**
@@ -178,9 +178,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListene
     }
 
     override fun onDestroyView() {
-        if (mCountDownHelper != null) {
-            mCountDownHelper!!.recycle()
-        }
+        mCountDownHelper?.recycle()
         super.onDestroyView()
     }
 }

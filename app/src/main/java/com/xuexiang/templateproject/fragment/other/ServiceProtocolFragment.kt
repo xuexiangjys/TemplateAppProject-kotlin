@@ -56,7 +56,7 @@ class ServiceProtocolFragment : BaseFragment<FragmentServiceProtocolBinding?>() 
     }
 
     override fun initTitle(): TitleBar? {
-        return super.initTitle()!!.setTitle(title).setImmersive(isImmersive)
+        return super.initTitle()?.setTitle(title)?.setImmersive(isImmersive)
     }
 
     /**
@@ -64,19 +64,19 @@ class ServiceProtocolFragment : BaseFragment<FragmentServiceProtocolBinding?>() 
      */
     override fun initViews() {
         if (title == ResUtils.getString(R.string.title_user_protocol)) {
-            binding!!.tvProtocolText.text = accountProtocol
+            binding?.tvProtocolText?.text = accountProtocol
         } else {
-            binding!!.tvProtocolText.text = privacyProtocol
+            binding?.tvProtocolText?.text = privacyProtocol
         }
     }
 
     @get:MemoryCache("account_protocol")
     private val accountProtocol: String
-        private get() = ResourceUtils.readStringFromAssert(ACCOUNT_PROTOCOL_ASSET_PATH)
+        get() = ResourceUtils.readStringFromAssert(ACCOUNT_PROTOCOL_ASSET_PATH)
 
     @get:MemoryCache("privacy_protocol")
     private val privacyProtocol: String
-        private get() = ResourceUtils.readStringFromAssert(PRIVACY_PROTOCOL_ASSET_PATH)
+        get() = ResourceUtils.readStringFromAssert(PRIVACY_PROTOCOL_ASSET_PATH)
 
     companion object {
         const val KEY_PROTOCOL_TITLE = "key_protocol_title"

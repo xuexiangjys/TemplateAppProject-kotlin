@@ -78,10 +78,6 @@ class AgentWebActivity : AppCompatActivity() {
         ft.commit()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-    }
-
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         val agentWebFragment = mAgentWebFragment
         return if (agentWebFragment != null) {

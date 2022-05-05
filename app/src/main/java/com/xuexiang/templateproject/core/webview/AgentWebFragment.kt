@@ -63,7 +63,7 @@ import java.util.*
  * @author xuexiang
  * @since 2019/1/4 下午11:13
  */
-class AgentWebFragment : Fragment(), FragmentKeyDown {
+open class AgentWebFragment : Fragment(), FragmentKeyDown {
     private var mBackImageView: ImageView? = null
     private var mLineView: View? = null
     private var mFinishImageView: ImageView? = null
@@ -112,17 +112,17 @@ class AgentWebFragment : Fragment(), FragmentKeyDown {
         }
 
         // 得到 AgentWeb 最底层的控件
-        addBackgroundChild(mAgentWeb!!.webCreator.webParentLayout)
+        addBackgroundChild(mAgentWeb?.webCreator!!.webParentLayout)
         initView(view)
 
         // AgentWeb 没有把WebView的功能全面覆盖 ，所以某些设置 AgentWeb 没有提供，请从WebView方面入手设置。
-        mAgentWeb!!.webCreator.webView.overScrollMode = WebView.OVER_SCROLL_NEVER
+        mAgentWeb?.webCreator?.webView?.overScrollMode = WebView.OVER_SCROLL_NEVER
     }
 
-    protected val webLayout: IWebLayout<*, *>
-        protected get() = WebLayout(activity)
+    private val webLayout: IWebLayout<*, *>
+        get() = WebLayout(activity)
 
-    protected fun initView(view: View) {
+    private fun initView(view: View) {
         mBackImageView = view.findViewById(R.id.iv_back)
         mLineView = view.findViewById(R.id.view_line)
         mFinishImageView = view.findViewById(R.id.iv_finish)
@@ -134,7 +134,7 @@ class AgentWebFragment : Fragment(), FragmentKeyDown {
         pageNavigator(View.GONE)
     }
 
-    protected fun addBackgroundChild(frameLayout: FrameLayout) {
+    private fun addBackgroundChild(frameLayout: FrameLayout) {
         val textView = TextView(frameLayout.context)
         textView.text = "技术由 AgentWeb 提供"
         textView.textSize = 16f

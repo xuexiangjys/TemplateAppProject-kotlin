@@ -134,7 +134,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
     /**
      * 注册侧滑回调
      */
-    protected fun registerSlideBack() {
+    private fun registerSlideBack() {
         if (isSupportSlideBack) {
             SlideBack.with(this)
                 .haveScroll(true)
@@ -147,7 +147,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
     /**
      * 注销侧滑回调
      */
-    protected fun unregisterSlideBack() {
+    private fun unregisterSlideBack() {
         if (isSupportSlideBack) {
             SlideBack.unregister(this)
         }
@@ -157,7 +157,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      * @return 是否支持侧滑返回
      */
     protected open val isSupportSlideBack: Boolean
-        protected get() {
+        get() {
             val page: CoreSwitchBean? = intent.getParcelableExtra(CoreSwitchBean.KEY_SWITCH_BEAN)
             return page == null || page.bundle == null || page.bundle.getBoolean(
                 KEY_SUPPORT_SLIDE_BACK,
