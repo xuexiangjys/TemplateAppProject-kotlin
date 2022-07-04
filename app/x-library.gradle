@@ -49,7 +49,7 @@ configurations.all {
     resolutionStrategy.force deps.okhttp3
 }
 
-// 这里需要修改包名
+// TODO 这里需要修改包名
 aspectjx {
     include 'com.xuexiang.templateproject'
 }
