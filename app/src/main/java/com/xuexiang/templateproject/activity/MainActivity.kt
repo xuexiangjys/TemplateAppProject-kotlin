@@ -37,7 +37,6 @@ import com.xuexiang.templateproject.fragment.other.SettingsFragment
 import com.xuexiang.templateproject.fragment.profile.ProfileFragment
 import com.xuexiang.templateproject.fragment.trending.TrendingFragment
 import com.xuexiang.templateproject.utils.Utils.Companion.isColorDark
-import com.xuexiang.templateproject.utils.XToastUtils
 import com.xuexiang.templateproject.utils.sdkinit.XUpdateInit
 import com.xuexiang.templateproject.widget.GuideTipsDialog.Companion.showTips
 import com.xuexiang.templateproject.widget.GuideTipsDialog.Companion.showTipsForce
@@ -46,6 +45,7 @@ import com.xuexiang.xui.adapter.FragmentAdapter
 import com.xuexiang.xui.utils.ResUtils
 import com.xuexiang.xui.utils.ThemeUtils
 import com.xuexiang.xui.utils.WidgetUtils
+import com.xuexiang.xui.utils.XToastUtils
 import com.xuexiang.xui.widget.imageview.RadiusImageView
 import com.xuexiang.xutil.XUtil
 import com.xuexiang.xutil.common.ClickUtils

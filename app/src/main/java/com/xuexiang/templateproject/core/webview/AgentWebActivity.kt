@@ -22,11 +22,10 @@ import android.os.Bundle
 import android.view.KeyEvent
 import androidx.appcompat.app.AppCompatActivity
 import com.xuexiang.templateproject.R
-import com.xuexiang.templateproject.core.webview.AgentWebActivity
-import com.xuexiang.templateproject.utils.XToastUtils
 import com.xuexiang.xrouter.facade.Postcard
 import com.xuexiang.xrouter.facade.callback.NavCallback
 import com.xuexiang.xrouter.launcher.XRouter
+import com.xuexiang.xui.utils.XToastUtils
 import com.xuexiang.xui.widget.slideback.SlideBack
 
 /**

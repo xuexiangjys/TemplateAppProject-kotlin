@@ -19,6 +19,7 @@ package com.xuexiang.templateproject.utils
 import android.content.Context
 import com.umeng.analytics.MobclickAgent
 import com.xuexiang.templateproject.activity.LoginActivity
+import com.xuexiang.xui.utils.XToastUtils
 import com.xuexiang.xutil.app.ActivityUtils
 import com.xuexiang.xutil.common.StringUtils
 

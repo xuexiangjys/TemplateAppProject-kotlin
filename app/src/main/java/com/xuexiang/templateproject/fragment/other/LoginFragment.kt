@@ -31,15 +31,11 @@ import com.xuexiang.templateproject.utils.SettingUtils.Companion.isAgreePrivacy
 import com.xuexiang.templateproject.utils.TokenUtils.Companion.handleLoginSuccess
 import com.xuexiang.templateproject.utils.Utils.Companion.gotoProtocol
 import com.xuexiang.templateproject.utils.Utils.Companion.showPrivacyDialog
-import com.xuexiang.templateproject.utils.XToastUtils
 import com.xuexiang.templateproject.utils.sdkinit.UMengInit
 import com.xuexiang.xaop.annotation.SingleClick
 import com.xuexiang.xpage.annotation.Page
 import com.xuexiang.xpage.enums.CoreAnim
-import com.xuexiang.xui.utils.CountDownButtonHelper
-import com.xuexiang.xui.utils.ResUtils
-import com.xuexiang.xui.utils.ThemeUtils
-import com.xuexiang.xui.utils.ViewUtils
+import com.xuexiang.xui.utils.*
 import com.xuexiang.xui.widget.actionbar.TitleBar
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction
 import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog

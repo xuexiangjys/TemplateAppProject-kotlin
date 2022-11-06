@@ -17,11 +17,10 @@
 package com.xuexiang.templateproject.utils.update
 
 import com.xuexiang.templateproject.utils.update.UpdateTipDialog.Companion.show
+import com.xuexiang.xui.utils.XToastUtils
 import kotlin.jvm.JvmOverloads
 import com.xuexiang.xupdate.listener.OnUpdateFailureListener
 import com.xuexiang.xupdate.entity.UpdateError
-import com.xuexiang.templateproject.utils.XToastUtils
-import com.xuexiang.templateproject.utils.update.UpdateTipDialog
 
 /**
  * 自定义版本更新提示
@@ -42,7 +41,7 @@ class CustomUpdateFailureListener @JvmOverloads constructor(
      */
     override fun onFailure(error: UpdateError) {
         if (mNeedErrorTip) {
-            XToastUtils.error(error)
+            XToastUtils.error(error.detailMsg)
         }
         if (error.code == UpdateError.ERROR.DOWNLOAD_FAILED) {
             show("应用下载失败，是否考虑切换" + UpdateTipDialog.DOWNLOAD_TYPE_NAME + "下载？")

@@ -18,11 +18,10 @@ package com.xuexiang.templateproject.core
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
-import com.xuexiang.templateproject.utils.XToastUtils
-import com.xuexiang.xaop.annotation.MemoryCache
 import com.xuexiang.xrouter.annotation.AutoWired
 import com.xuexiang.xrouter.annotation.Router
 import com.xuexiang.xrouter.launcher.XRouter
+import com.xuexiang.xui.utils.XToastUtils
 import com.xuexiang.xutil.common.StringUtils
 
 /**

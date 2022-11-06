@@ -37,11 +37,11 @@ import com.xuexiang.templateproject.utils.DemoDataProvider.demoNewInfos
 import com.xuexiang.templateproject.utils.DemoDataProvider.emptyNewInfo
 import com.xuexiang.templateproject.utils.DemoDataProvider.getGridItems
 import com.xuexiang.templateproject.utils.Utils.Companion.goWeb
-import com.xuexiang.templateproject.utils.XToastUtils
 import com.xuexiang.xpage.annotation.Page
 import com.xuexiang.xpage.enums.CoreAnim
 import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder
 import com.xuexiang.xui.adapter.simple.AdapterItem
+import com.xuexiang.xui.utils.XToastUtils
 import com.xuexiang.xui.widget.actionbar.TitleBar
 import com.xuexiang.xui.widget.banner.widget.banner.BannerItem
 import com.xuexiang.xui.widget.banner.widget.banner.SimpleImageBanner

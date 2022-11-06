@@ -16,12 +16,12 @@
  */
 package com.xuexiang.templateproject.utils.update
 
-import com.xuexiang.templateproject.utils.XToastUtils
 import com.xuexiang.xhttp2.XHttp
 import com.xuexiang.xhttp2.XHttpSDK
 import com.xuexiang.xhttp2.callback.DownloadProgressCallBack
 import com.xuexiang.xhttp2.callback.SimpleCallBack
 import com.xuexiang.xhttp2.exception.ApiException
+import com.xuexiang.xui.utils.XToastUtils
 import com.xuexiang.xupdate.proxy.IUpdateHttpService
 import com.xuexiang.xupdate.proxy.IUpdateHttpService.DownloadCallback
 import com.xuexiang.xutil.file.FileUtils
