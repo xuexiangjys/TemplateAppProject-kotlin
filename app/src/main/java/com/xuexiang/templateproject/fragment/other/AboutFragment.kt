@@ -22,7 +22,7 @@ import com.xuexiang.templateproject.R
 import com.xuexiang.templateproject.core.BaseFragment
 import com.xuexiang.templateproject.core.webview.AgentWebActivity
 import com.xuexiang.templateproject.databinding.FragmentAboutBinding
-import com.xuexiang.templateproject.utils.Utils.Companion.gotoProtocol
+import com.xuexiang.templateproject.utils.Utils.gotoProtocol
 import com.xuexiang.xpage.annotation.Page
 import com.xuexiang.xui.widget.grouplist.XUIGroupListView
 import com.xuexiang.xutil.app.AppUtils

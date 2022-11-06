@@ -21,8 +21,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.xuexiang.templateproject.utils.Utils.Companion.goWeb
-import com.xuexiang.templateproject.utils.update.UpdateTipDialog
+import com.xuexiang.templateproject.utils.Utils.goWeb
 import com.xuexiang.xui.widget.dialog.DialogLoader
 import com.xuexiang.xupdate.XUpdate
 

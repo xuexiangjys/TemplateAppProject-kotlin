@@ -25,12 +25,12 @@ import com.xuexiang.templateproject.R
 import com.xuexiang.templateproject.activity.MainActivity
 import com.xuexiang.templateproject.core.BaseFragment
 import com.xuexiang.templateproject.databinding.FragmentLoginBinding
-import com.xuexiang.templateproject.utils.RandomUtils.Companion.getRandomNumbersAndLetters
+import com.xuexiang.templateproject.utils.RandomUtils.getRandomNumbersAndLetters
 import com.xuexiang.templateproject.utils.SettingUtils
-import com.xuexiang.templateproject.utils.SettingUtils.Companion.isAgreePrivacy
-import com.xuexiang.templateproject.utils.TokenUtils.Companion.handleLoginSuccess
-import com.xuexiang.templateproject.utils.Utils.Companion.gotoProtocol
-import com.xuexiang.templateproject.utils.Utils.Companion.showPrivacyDialog
+import com.xuexiang.templateproject.utils.SettingUtils.isAgreePrivacy
+import com.xuexiang.templateproject.utils.TokenUtils.handleLoginSuccess
+import com.xuexiang.templateproject.utils.Utils.gotoProtocol
+import com.xuexiang.templateproject.utils.Utils.showPrivacyDialog
 import com.xuexiang.templateproject.utils.sdkinit.UMengInit
 import com.xuexiang.xaop.annotation.SingleClick
 import com.xuexiang.xpage.annotation.Page

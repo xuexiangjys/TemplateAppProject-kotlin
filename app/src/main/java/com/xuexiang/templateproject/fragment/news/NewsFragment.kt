@@ -36,7 +36,7 @@ import com.xuexiang.templateproject.utils.DemoDataProvider.bannerList
 import com.xuexiang.templateproject.utils.DemoDataProvider.demoNewInfos
 import com.xuexiang.templateproject.utils.DemoDataProvider.emptyNewInfo
 import com.xuexiang.templateproject.utils.DemoDataProvider.getGridItems
-import com.xuexiang.templateproject.utils.Utils.Companion.goWeb
+import com.xuexiang.templateproject.utils.Utils.goWeb
 import com.xuexiang.xpage.annotation.Page
 import com.xuexiang.xpage.enums.CoreAnim
 import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder

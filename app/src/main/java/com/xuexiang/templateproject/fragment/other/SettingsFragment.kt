@@ -22,7 +22,7 @@ import android.view.ViewGroup
 import com.xuexiang.templateproject.R
 import com.xuexiang.templateproject.core.BaseFragment
 import com.xuexiang.templateproject.databinding.FragmentSettingsBinding
-import com.xuexiang.templateproject.utils.TokenUtils.Companion.handleLogoutSuccess
+import com.xuexiang.templateproject.utils.TokenUtils.handleLogoutSuccess
 import com.xuexiang.xaop.annotation.SingleClick
 import com.xuexiang.xpage.annotation.Page
 import com.xuexiang.xui.utils.XToastUtils

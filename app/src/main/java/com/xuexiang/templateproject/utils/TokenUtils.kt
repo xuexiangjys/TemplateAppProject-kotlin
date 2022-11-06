@@ -29,72 +29,66 @@ import com.xuexiang.xutil.common.StringUtils
  * @author xuexiang
  * @since 2019-11-17 22:37
  */
-class TokenUtils private constructor() {
-    companion object {
-        private var sToken: String? = null
-        private const val KEY_TOKEN = "com.xuexiang.templateproject.utils.KEY_TOKEN"
-        private const val KEY_PROFILE_CHANNEL = "github"
+object TokenUtils {
+    private var sToken: String? = null
+    private const val KEY_TOKEN = "com.xuexiang.templateproject.utils.KEY_TOKEN"
+    private const val KEY_PROFILE_CHANNEL = "github"
 
-        /**
-         * 初始化Token信息
-         */
-        @JvmStatic
-        fun init(context: Context) {
-            MMKVUtils.init(context)
-            sToken = MMKVUtils.getString(KEY_TOKEN, "")
+    /**
+     * 初始化Token信息
+     */
+    @JvmStatic
+    fun init(context: Context) {
+        MMKVUtils.init(context)
+        sToken = MMKVUtils.getString(KEY_TOKEN, "")
+    }
+
+    fun clearToken() {
+        sToken = null
+        MMKVUtils.remove(KEY_TOKEN)
+    }
+
+    var token: String?
+        get() = sToken
+        set(token) {
+            sToken = token
+            MMKVUtils.put(KEY_TOKEN, token)
         }
 
-        fun clearToken() {
-            sToken = null
-            MMKVUtils.remove(KEY_TOKEN)
-        }
+    @JvmStatic
+    fun hasToken(): Boolean {
+        return MMKVUtils.containsKey(KEY_TOKEN)
+    }
 
-        var token: String?
-            get() = sToken
-            set(token) {
-                sToken = token
-                MMKVUtils.put(KEY_TOKEN, token)
-            }
-
-        @JvmStatic
-        fun hasToken(): Boolean {
-            return MMKVUtils.containsKey(KEY_TOKEN)
-        }
-
-        /**
-         * 处理登录成功的事件
-         *
-         * @param token 账户信息
-         */
-        @JvmStatic
-        fun handleLoginSuccess(token: String?): Boolean {
-            return if (!StringUtils.isEmpty(token)) {
-                XToastUtils.success("登录成功！")
-                MobclickAgent.onProfileSignIn(KEY_PROFILE_CHANNEL, token)
-                Companion.token = token
-                true
-            } else {
-                XToastUtils.error("登录失败！")
-                false
-            }
-        }
-
-        /**
-         * 处理登出的事件
-         */
-        @JvmStatic
-        fun handleLogoutSuccess() {
-            MobclickAgent.onProfileSignOff()
-            //登出时，清除账号信息
-            clearToken()
-            XToastUtils.success("登出成功！")
-            SettingUtils.isAgreePrivacy = false
-            //跳转到登录页
-            ActivityUtils.startActivity(LoginActivity::class.java)
+    /**
+     * 处理登录成功的事件
+     *
+     * @param loginToken 账户信息
+     */
+    @JvmStatic
+    fun handleLoginSuccess(loginToken: String?): Boolean {
+        return if (!StringUtils.isEmpty(loginToken)) {
+            XToastUtils.success("登录成功！")
+            MobclickAgent.onProfileSignIn(KEY_PROFILE_CHANNEL, token)
+            token = loginToken
+            true
+        } else {
+            XToastUtils.error("登录失败！")
+            false
         }
     }
 
-    init {
-        throw UnsupportedOperationException("u can't instantiate me...")
+    /**
+     * 处理登出的事件
+     */
+    @JvmStatic
+    fun handleLogoutSuccess() {
+        MobclickAgent.onProfileSignOff()
+        //登出时，清除账号信息
+        clearToken()
+        XToastUtils.success("登出成功！")
+        SettingUtils.isAgreePrivacy = false
+        //跳转到登录页
+        ActivityUtils.startActivity(LoginActivity::class.java)
     }
 }

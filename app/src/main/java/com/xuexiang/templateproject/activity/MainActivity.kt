@@ -36,7 +36,7 @@ import com.xuexiang.templateproject.fragment.other.AboutFragment
 import com.xuexiang.templateproject.fragment.other.SettingsFragment
 import com.xuexiang.templateproject.fragment.profile.ProfileFragment
 import com.xuexiang.templateproject.fragment.trending.TrendingFragment
-import com.xuexiang.templateproject.utils.Utils.Companion.isColorDark
+import com.xuexiang.templateproject.utils.Utils
 import com.xuexiang.templateproject.utils.sdkinit.XUpdateInit
 import com.xuexiang.templateproject.widget.GuideTipsDialog.Companion.showTips
 import com.xuexiang.templateproject.widget.GuideTipsDialog.Companion.showTipsForce
@@ -107,7 +107,7 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
         val ivAvatar: RadiusImageView? = headerView?.findViewById(R.id.iv_avatar)
         val tvAvatar = headerView?.findViewById<TextView>(R.id.tv_avatar)
         val tvSign = headerView?.findViewById<TextView>(R.id.tv_sign)
-        if (isColorDark(ThemeUtils.resolveColor(this, R.attr.colorAccent))) {
+        if (Utils.isColorDark(ThemeUtils.resolveColor(this, R.attr.colorAccent))) {
             tvAvatar?.setTextColor(Colors.WHITE)
             tvSign?.setTextColor(Colors.WHITE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

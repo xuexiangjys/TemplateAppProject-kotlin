@@ -34,50 +34,44 @@ import com.xuexiang.xutil.common.StringUtils
  * @author xuexiang
  * @since 2019-06-18 15:51
  */
-class XUpdateInit private constructor() {
-    companion object {
-        /**
-         * 应用版本更新的检查地址
-         */
-        // TODO: 2021/5/26 需要开启版本更新功能的话，就需要配置一下版本更新的地址
-        private const val KEY_UPDATE_URL = ""
-        fun init(application: Application) {
-            XUpdate.get()
-                .debug(MyApp.isDebug) //默认设置只在wifi下检查版本更新
-                .isWifiOnly(false) //默认设置使用get请求检查版本
-                .isGet(true) //默认设置非自动模式，可根据具体使用配置
-                .isAutoMode(false) //设置默认公共请求参数
-                .param("versionCode", UpdateUtils.getVersionCode(application))
-                .param("appKey", application.packageName) //这个必须设置！实现网络请求功能。
-                .setIUpdateHttpService(XHttpUpdateHttpServiceImpl())
-                .setIUpdateDownLoader(CustomUpdateDownloader()) //这个必须初始化
-                .init(application)
-        }
-
-        /**
-         * 进行版本更新检查
-         */
-        fun checkUpdate(context: Context, needErrorTip: Boolean) {
-            checkUpdate(context, KEY_UPDATE_URL, needErrorTip)
-        }
-
-        /**
-         * 进行版本更新检查
-         *
-         * @param context      上下文
-         * @param url          版本更新检查的地址
-         * @param needErrorTip 是否需要错误的提示
-         */
-        private fun checkUpdate(context: Context, url: String, needErrorTip: Boolean) {
-            if (StringUtils.isEmpty(url)) {
-                return
-            }
-            XUpdate.newBuild(context).updateUrl(url).update()
-            XUpdate.get().setOnUpdateFailureListener(CustomUpdateFailureListener(needErrorTip))
-        }
+object XUpdateInit {
+    /**
+     * 应用版本更新的检查地址
+     */
+    // TODO: 2021/5/26 需要开启版本更新功能的话，就需要配置一下版本更新的地址
+    private const val KEY_UPDATE_URL = ""
+    fun init(application: Application) {
+        XUpdate.get()
+            .debug(MyApp.isDebug) //默认设置只在wifi下检查版本更新
+            .isWifiOnly(false) //默认设置使用get请求检查版本
+            .isGet(true) //默认设置非自动模式，可根据具体使用配置
+            .isAutoMode(false) //设置默认公共请求参数
+            .param("versionCode", UpdateUtils.getVersionCode(application))
+            .param("appKey", application.packageName) //这个必须设置！实现网络请求功能。
+            .setIUpdateHttpService(XHttpUpdateHttpServiceImpl())
+            .setIUpdateDownLoader(CustomUpdateDownloader()) //这个必须初始化
+            .init(application)
     }
 
-    init {
-        throw UnsupportedOperationException("u can't instantiate me...")
+    /**
+     * 进行版本更新检查
+     */
+    fun checkUpdate(context: Context, needErrorTip: Boolean) {
+        checkUpdate(context, KEY_UPDATE_URL, needErrorTip)
+    }
+
+    /**
+     * 进行版本更新检查
+     *
+     * @param context      上下文
+     * @param url          版本更新检查的地址
+     * @param needErrorTip 是否需要错误的提示
+     */
+    private fun checkUpdate(context: Context, url: String, needErrorTip: Boolean) {
+        if (StringUtils.isEmpty(url)) {
+            return
+        }
+        XUpdate.newBuild(context).updateUrl(url).update()
+        XUpdate.get().setOnUpdateFailureListener(CustomUpdateFailureListener(needErrorTip))
     }
 }

@@ -18,9 +18,9 @@ package com.xuexiang.templateproject.activity
 
 import android.view.KeyEvent
 import com.xuexiang.templateproject.R
-import com.xuexiang.templateproject.utils.SettingUtils.Companion.isAgreePrivacy
-import com.xuexiang.templateproject.utils.TokenUtils.Companion.hasToken
-import com.xuexiang.templateproject.utils.Utils.Companion.showPrivacyDialog
+import com.xuexiang.templateproject.utils.SettingUtils.isAgreePrivacy
+import com.xuexiang.templateproject.utils.TokenUtils.hasToken
+import com.xuexiang.templateproject.utils.Utils.showPrivacyDialog
 import com.xuexiang.xui.utils.KeyboardUtils
 import com.xuexiang.xui.widget.activity.BaseSplashActivity
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction
