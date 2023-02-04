@@ -62,9 +62,11 @@ import com.xuexiang.xutil.display.Colors
 class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
     BottomNavigationView.OnNavigationItemSelectedListener, OnClick2ExitListener,
     Toolbar.OnMenuItemClickListener {
+
     private lateinit var mTitles: Array<String>
-    override fun viewBindingInflate(inflater: LayoutInflater?): ActivityMainBinding? {
-        return ActivityMainBinding.inflate(inflater!!)
+
+    override fun viewBindingInflate(inflater: LayoutInflater): ActivityMainBinding? {
+        return ActivityMainBinding.inflate(inflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,9 +88,7 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
 
         //主页内容填充
         val fragments = arrayOf(
-            NewsFragment(),
-            TrendingFragment(),
-            ProfileFragment()
+            NewsFragment(), TrendingFragment(), ProfileFragment()
         )
         val adapter = FragmentAdapter(supportFragmentManager, fragments)
         binding?.includeMain?.viewPager?.offscreenPageLimit = mTitles.size - 1
@@ -111,12 +111,21 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
             tvAvatar?.setTextColor(Colors.WHITE)
             tvSign?.setTextColor(Colors.WHITE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ivAvatar?.imageTintList =
-                    ResUtils.getColors(R.color.xui_config_color_white)
+                ivAvatar?.imageTintList = ResUtils.getColors(R.color.xui_config_color_white)
             }
         } else {
-            tvAvatar?.setTextColor(ThemeUtils.resolveColor(this, R.attr.xui_config_color_title_text))
-            tvSign?.setTextColor(ThemeUtils.resolveColor(this, R.attr.xui_config_color_explain_text))
+            tvAvatar?.setTextColor(
+                ThemeUtils.resolveColor(
+                    this,
+                    R.attr.xui_config_color_title_text
+                )
+            )
+            tvSign?.setTextColor(
+                ThemeUtils.resolveColor(
+                    this,
+                    R.attr.xui_config_color_explain_text
+                )
+            )
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 ivAvatar?.imageTintList = ResUtils.getColors(R.color.xui_config_color_gray_3)
             }
@@ -164,9 +173,7 @@ class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
         binding?.includeMain?.viewPager?.addOnPageChangeListener(object :
             ViewPager.OnPageChangeListener {
             override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
+                position: Int, positionOffset: Float, positionOffsetPixels: Int
             ) {
             }
 

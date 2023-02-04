@@ -28,33 +28,27 @@ import com.xuexiang.templateproject.core.BaseFragment
  * @since 2019/5/28 10:22
  */
 abstract class BaseWebViewFragment : BaseFragment<ViewBinding?>() {
+
     protected var mAgentWeb: AgentWeb? = null
 
     //===================生命周期管理===========================//
     override fun onResume() {
-        if (mAgentWeb != null) {
-            //恢复
-            mAgentWeb!!.webLifeCycle.onResume()
-        }
+        mAgentWeb?.webLifeCycle?.onResume()
         super.onResume()
     }
 
     override fun onPause() {
-        if (mAgentWeb != null) {
-            //暂停应用内所有WebView ， 调用mWebView.resumeTimers();/mAgentWeb.getWebLifeCycle().onResume(); 恢复。
-            mAgentWeb!!.webLifeCycle.onPause()
-        }
+        //暂停应用内所有WebView ， 调用mWebView.resumeTimers();/mAgentWeb.getWebLifeCycle().onResume(); 恢复。
+        mAgentWeb?.webLifeCycle?.onPause()
         super.onPause()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        return mAgentWeb != null && mAgentWeb!!.handleKeyEvent(keyCode, event)
+        return mAgentWeb?.handleKeyEvent(keyCode, event) ?: false
     }
 
     override fun onDestroyView() {
-        if (mAgentWeb != null) {
-            mAgentWeb!!.destroy()
-        }
+        mAgentWeb?.destroy()
         super.onDestroyView()
     }
 }

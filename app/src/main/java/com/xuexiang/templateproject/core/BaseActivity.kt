@@ -72,7 +72,7 @@ open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
      * @param inflater  inflater
      * @return ViewBinding
      */
-    protected open fun viewBindingInflate(inflater: LayoutInflater?): Binding? {
+    protected open fun viewBindingInflate(inflater: LayoutInflater): Binding? {
         return null
     }
 

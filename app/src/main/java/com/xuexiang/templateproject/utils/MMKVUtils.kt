@@ -40,7 +40,7 @@ object MMKVUtils {
         sMMKV = MMKV.defaultMMKV()
     }
 
-    fun getsMMKV(): MMKV {
+    fun getMMKV(): MMKV {
         if (sMMKV == null) {
             sMMKV = MMKV.defaultMMKV()
         }
@@ -55,35 +55,17 @@ object MMKVUtils {
      * @return
      */
     fun put(key: String?, value: Any?): Boolean {
-        when (value) {
-            is Int -> {
-                return getsMMKV().encode(key, (value as Int?)!!)
-            }
-            is Float -> {
-                return getsMMKV().encode(key, (value as Float?)!!)
-            }
-            is String -> {
-                return getsMMKV().encode(key, value as String?)
-            }
-            is Boolean -> {
-                return getsMMKV().encode(key, (value as Boolean?)!!)
-            }
-            is Long -> {
-                return getsMMKV().encode(key, (value as Long?)!!)
-            }
-            is Double -> {
-                return getsMMKV().encode(key, (value as Double?)!!)
-            }
-            is Parcelable -> {
-                return getsMMKV().encode(key, value as Parcelable?)
-            }
-            is ByteArray -> {
-                return getsMMKV().encode(key, value as ByteArray?)
-            }
-            is Set<*> -> {
-                return getsMMKV().encode(key, value as Set<String?>?)
-            }
-            else -> return false
+        return when (value) {
+            is Int -> getMMKV().encode(key, value)
+            is Float -> getMMKV().encode(key, value)
+            is String -> getMMKV().encode(key, value)
+            is Boolean -> getMMKV().encode(key, value)
+            is Long -> getMMKV().encode(key, value)
+            is Double -> getMMKV().encode(key, value)
+            is Parcelable -> getMMKV().encode(key, value)
+            is ByteArray -> getMMKV().encode(key, value)
+            is Set<*> -> getMMKV().encode(key, value as Set<String?>?)
+            else -> false
         }
     }
     //=======================================键值获取==================================================//
@@ -95,37 +77,16 @@ object MMKVUtils {
      * @return
      */
     operator fun get(key: String?, defaultValue: Any?): Any? {
-        when (defaultValue) {
-            is Int -> {
-                return getsMMKV()
-                    .decodeInt(key, (defaultValue as Int?)!!)
-            }
-            is Float -> {
-                return getsMMKV()
-                    .decodeFloat(key, (defaultValue as Float?)!!)
-            }
-            is String -> {
-                return getsMMKV().decodeString(key, defaultValue as String?)
-            }
-            is Boolean -> {
-                return getsMMKV()
-                    .decodeBool(key, (defaultValue as Boolean?)!!)
-            }
-            is Long -> {
-                return getsMMKV()
-                    .decodeLong(key, (defaultValue as Long?)!!)
-            }
-            is Double -> {
-                return getsMMKV()
-                    .decodeDouble(key, (defaultValue as Double?)!!)
-            }
-            is ByteArray -> {
-                return getsMMKV().decodeBytes(key)
-            }
-            is Set<*> -> {
-                return getsMMKV().decodeStringSet(key, defaultValue as Set<String?>?)
-            }
-            else -> return null
+        return when (defaultValue) {
+            is Int -> getMMKV().decodeInt(key, defaultValue)
+            is Float -> getMMKV().decodeFloat(key, defaultValue)
+            is String -> getMMKV().decodeString(key, defaultValue)
+            is Boolean -> getMMKV().decodeBool(key, defaultValue)
+            is Long -> getMMKV().decodeLong(key, defaultValue)
+            is Double -> getMMKV().decodeDouble(key, defaultValue)
+            is ByteArray -> getMMKV().decodeBytes(key)
+            is Set<*> -> getMMKV().decodeStringSet(key, defaultValue as Set<String?>?)
+            else -> null
         }
     }
 
@@ -138,7 +99,7 @@ object MMKVUtils {
      */
     fun getBoolean(key: String?, defValue: Boolean): Boolean {
         try {
-            return getsMMKV().getBoolean(key, defValue)
+            return getMMKV().getBoolean(key, defValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -154,7 +115,7 @@ object MMKVUtils {
      */
     fun getLong(key: String?, defValue: Long): Long {
         try {
-            return getsMMKV().getLong(key, defValue)
+            return getMMKV().getLong(key, defValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -170,7 +131,7 @@ object MMKVUtils {
      */
     fun getFloat(key: String?, defValue: Float): Float {
         try {
-            return getsMMKV().getFloat(key, defValue)
+            return getMMKV().getFloat(key, defValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -186,7 +147,7 @@ object MMKVUtils {
      */
     fun getString(key: String?, defValue: String?): String? {
         try {
-            return getsMMKV().getString(key, defValue)
+            return getMMKV().getString(key, defValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -202,7 +163,7 @@ object MMKVUtils {
      */
     fun getInt(key: String?, defValue: Int): Int {
         try {
-            return getsMMKV().getInt(key, defValue)
+            return getMMKV().getInt(key, defValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -218,7 +179,7 @@ object MMKVUtils {
      */
     fun getDouble(key: String?, defValue: Double): Double {
         try {
-            return getsMMKV().decodeDouble(key, defValue)
+            return getMMKV().decodeDouble(key, defValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -234,7 +195,7 @@ object MMKVUtils {
      * @return
     </T> */
     fun <T : Parcelable?> getObject(key: String?, tClass: Class<T>?): T? {
-        return getsMMKV().decodeParcelable(key, tClass)
+        return getMMKV().decodeParcelable(key, tClass)
     }
 
     /**
@@ -247,7 +208,7 @@ object MMKVUtils {
     </T> */
     fun <T : Parcelable?> getObject(key: String?, tClass: Class<T>?, defValue: T): T? {
         try {
-            return getsMMKV().decodeParcelable(key, tClass, defValue)
+            return getMMKV().decodeParcelable(key, tClass, defValue)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -261,7 +222,7 @@ object MMKVUtils {
      * @return 键值对是否存在
      */
     fun containsKey(key: String?): Boolean {
-        return getsMMKV().containsKey(key)
+        return getMMKV().containsKey(key)
     }
 
     /**
@@ -270,6 +231,6 @@ object MMKVUtils {
      * @param key 键
      */
     fun remove(key: String?) {
-        getsMMKV().remove(key).apply()
+        getMMKV().remove(key).apply()
     }
 }

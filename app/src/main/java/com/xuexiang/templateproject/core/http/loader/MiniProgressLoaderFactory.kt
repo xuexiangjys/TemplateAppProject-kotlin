@@ -26,11 +26,12 @@ import com.xuexiang.xhttp2.subsciber.impl.IProgressLoader
  * @since 2019-11-18 23:23
  */
 class MiniProgressLoaderFactory : IProgressLoaderFactory {
-    override fun create(context: Context?): IProgressLoader? {
+
+    override fun create(context: Context?): IProgressLoader {
         return MiniLoadingDialogLoader(context)
     }
 
-    override fun create(context: Context?, message: String?): IProgressLoader? {
+    override fun create(context: Context?, message: String?): IProgressLoader {
         return MiniLoadingDialogLoader(context, message)
     }
 }

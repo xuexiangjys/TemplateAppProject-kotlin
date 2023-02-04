@@ -38,7 +38,7 @@ abstract class TipProgressLoadingSubscriber<T> : ProgressLoadingSubscriber<T> {
     private var mUrl: String? = null
 
     constructor() : super() {}
-    constructor(fragment: BaseFragment<*>) : super(fragment.progressLoader) {}
+    constructor(fragment: BaseFragment<*>) : super(fragment.getProgressLoader()) {}
     constructor(iProgressLoader: IProgressLoader?) : super(iProgressLoader) {}
     constructor(req: XHttpRequest) : this(req.url) {}
     constructor(url: String?) : super() {

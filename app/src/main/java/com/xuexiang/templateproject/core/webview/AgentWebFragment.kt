@@ -147,8 +147,8 @@ open class AgentWebFragment : Fragment(), FragmentKeyDown {
     }
 
     private fun pageNavigator(tag: Int) {
-        mBackImageView!!.visibility = tag
-        mLineView!!.visibility = tag
+        mBackImageView?.visibility = tag
+        mLineView?.visibility = tag
     }
 
     private val mOnClickListener = View.OnClickListener { v ->
@@ -357,13 +357,13 @@ open class AgentWebFragment : Fragment(), FragmentKeyDown {
         }
 
         override fun onReceivedTitle(view: WebView, title: String) {
-            var title = title
-            super.onReceivedTitle(view, title)
-            if (mTitleTextView != null && !TextUtils.isEmpty(title)) {
-                if (title.length > 10) {
-                    title = title.substring(0, 10) + "..."
+            var titleTemp = title
+            super.onReceivedTitle(view, titleTemp)
+            if (mTitleTextView != null && !TextUtils.isEmpty(titleTemp)) {
+                if (titleTemp.length > 10) {
+                    titleTemp = titleTemp.substring(0, 10) + "..."
                 }
-                mTitleTextView!!.text = title
+                mTitleTextView?.text = titleTemp
             }
         }
     }
@@ -465,10 +465,10 @@ open class AgentWebFragment : Fragment(), FragmentKeyDown {
     private fun showPoPup(view: View) {
         if (mPopupMenu == null) {
             mPopupMenu = PopupMenu(requireContext(), view)
-            mPopupMenu!!.inflate(R.menu.menu_toolbar_web)
-            mPopupMenu!!.setOnMenuItemClickListener(mOnMenuItemClickListener)
+            mPopupMenu?.inflate(R.menu.menu_toolbar_web)
+            mPopupMenu?.setOnMenuItemClickListener(mOnMenuItemClickListener)
         }
-        mPopupMenu!!.show()
+        mPopupMenu?.show()
     }
 
     /**
@@ -477,26 +477,24 @@ open class AgentWebFragment : Fragment(), FragmentKeyDown {
     private val mOnMenuItemClickListener = PopupMenu.OnMenuItemClickListener { item ->
         when (item.itemId) {
             R.id.refresh -> {
-                if (mAgentWeb != null) {
-                    mAgentWeb!!.urlLoader.reload() // 刷新
-                }
+                mAgentWeb?.urlLoader?.reload() // 刷新
                 true
             }
             R.id.copy -> {
-                if (mAgentWeb != null) {
-                    toCopy(context, mAgentWeb!!.webCreator.webView.url)
+                mAgentWeb?.let {
+                    toCopy(context, it.webCreator.webView.url)
                 }
                 true
             }
             R.id.default_browser -> {
-                if (mAgentWeb != null) {
-                    openBrowser(mAgentWeb!!.webCreator.webView.url)
+                mAgentWeb?.let {
+                    openBrowser(it.webCreator.webView.url)
                 }
                 true
             }
             R.id.share -> {
-                if (mAgentWeb != null) {
-                    shareWebUrl(mAgentWeb!!.webCreator.webView.url)
+                mAgentWeb?.let {
+                    shareWebUrl(it.webCreator.webView.url)
                 }
                 true
             }
@@ -525,28 +523,27 @@ open class AgentWebFragment : Fragment(), FragmentKeyDown {
      * @param text
      */
     private fun toCopy(context: Context?, text: String) {
-        val manager = context!!.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            ?: return
+        val manager = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         manager.setPrimaryClip(ClipData.newPlainText(null, text))
     }
 
     //===================生命周期管理===========================//
     override fun onResume() {
-        mAgentWeb!!.webLifeCycle.onResume() //恢复
+        mAgentWeb?.webLifeCycle?.onResume() //恢复
         super.onResume()
     }
 
     override fun onPause() {
-        mAgentWeb!!.webLifeCycle.onPause() //暂停应用内所有WebView ， 调用mWebView.resumeTimers();/mAgentWeb.getWebLifeCycle().onResume(); 恢复。
+        mAgentWeb?.webLifeCycle?.onPause() //暂停应用内所有WebView ， 调用mWebView.resumeTimers();/mAgentWeb.getWebLifeCycle().onResume(); 恢复。
         super.onPause()
     }
 
     override fun onFragmentKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        return mAgentWeb!!.handleKeyEvent(keyCode, event)
+        return mAgentWeb?.handleKeyEvent(keyCode, event) ?: false
     }
 
     override fun onDestroyView() {
-        mAgentWeb!!.webLifeCycle.onDestroy()
+        mAgentWeb?.webLifeCycle?.onDestroy()
         super.onDestroyView()
     }
     //===================中间键===========================//// 拦截 url，不执行 DefaultWebClient#shouldOverrideUrlLoading

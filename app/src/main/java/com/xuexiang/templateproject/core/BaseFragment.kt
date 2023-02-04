@@ -48,7 +48,9 @@ import java.lang.reflect.Type
  * @since 2018/5/25 下午3:44
  */
 abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
-    private var mIProgressLoader: IProgressLoader? = null
+
+    private var mProgressLoader: IProgressLoader? = null
+
     /**
      * ViewBinding
      */
@@ -57,6 +59,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View? {
         binding = viewBindingInflate(inflater, container)
+        onViewBindingUpdate(binding)
         return binding?.root
     }
 
@@ -68,9 +71,16 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return ViewBinding
      */
     protected abstract fun viewBindingInflate(
-        inflater: LayoutInflater,
-        container: ViewGroup
+        inflater: LayoutInflater, container: ViewGroup
     ): Binding
+
+    /**
+     * ViewBinding更新
+     * @param binding ViewBinding
+     */
+    open fun onViewBindingUpdate(binding: Binding?) {
+
+    }
 
     override fun initPage() {
         initTitle()
@@ -80,8 +90,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
 
     protected open fun initTitle(): TitleBar? {
         return TitleUtils.addTitleBarDynamic(
-            rootView as ViewGroup,
-            pageTitle
+            rootView as ViewGroup, pageTitle
         ) { popToBack() }
     }
 
@@ -92,13 +101,12 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      *
      * @return 进度条加载者
      */
-    val progressLoader: IProgressLoader?
-        get() {
-            if (mIProgressLoader == null) {
-                mIProgressLoader = ProgressLoader.create(context)
-            }
-            return mIProgressLoader
+    fun getProgressLoader(): IProgressLoader? {
+        if (mProgressLoader == null) {
+            mProgressLoader = ProgressLoader.create(context)
         }
+        return mProgressLoader
+    }
 
     /**
      * 获取进度条加载者
@@ -107,12 +115,12 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return 进度条加载者
      */
     fun getProgressLoader(message: String?): IProgressLoader? {
-        if (mIProgressLoader == null) {
-            mIProgressLoader = ProgressLoader.create(context, message)
+        if (mProgressLoader == null) {
+            mProgressLoader = ProgressLoader.create(context, message)
         } else {
-            mIProgressLoader?.updateMessage(message)
+            mProgressLoader?.updateMessage(message)
         }
-        return mIProgressLoader
+        return mProgressLoader
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
@@ -126,7 +134,8 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
     }
 
     override fun onDestroyView() {
-        mIProgressLoader?.dismissLoading()
+        mProgressLoader?.dismissLoading()
+        mProgressLoader = null
         super.onDestroyView()
         binding = null
     }
@@ -149,9 +158,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment> openNewPage(clazz: Class<T>): Fragment? {
-        return PageOption.to(clazz)
-            .setNewActivity(true)
-            .open(this)
+        return PageOption.to(clazz).setNewActivity(true).open(this)
     }
 
     /**
@@ -162,10 +169,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment> openNewPage(pageName: String): Fragment? {
-        return PageOption.to(pageName)
-            .setAnim(CoreAnim.slide)
-            .setNewActivity(true)
-            .open(this)
+        return PageOption.to(pageName).setAnim(CoreAnim.slide).setNewActivity(true).open(this)
     }
 
     /**
@@ -177,13 +181,10 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment?> openNewPage(
-        clazz: Class<T>,
-        containActivityClazz: Class<out XPageActivity>
+        clazz: Class<T>, containActivityClazz: Class<out XPageActivity>
     ): Fragment? {
-        return PageOption.to(clazz)
-            .setNewActivity(true)
-            .setContainActivityClazz(containActivityClazz)
-            .open(this)
+        return PageOption.to(clazz).setNewActivity(true)
+            .setContainActivityClazz(containActivityClazz).open(this)
     }
 
     /**
@@ -244,15 +245,9 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment?> openPage(
-        clazz: Class<T>?,
-        addToBackStack: Boolean,
-        key: String?,
-        value: String?
+        clazz: Class<T>?, addToBackStack: Boolean, key: String?, value: String?
     ): Fragment? {
-        return PageOption(clazz)
-            .setAddToBackStack(addToBackStack)
-            .putString(key, value)
-            .open(this)
+        return PageOption(clazz).setAddToBackStack(addToBackStack).putString(key, value).open(this)
     }
 
     /**
@@ -279,10 +274,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment?> openPage(
-        clazz: Class<T>?,
-        addToBackStack: Boolean,
-        key: String?,
-        value: Any?
+        clazz: Class<T>?, addToBackStack: Boolean, key: String?, value: Any?
     ): Fragment? {
         val option = PageOption(clazz).setAddToBackStack(addToBackStack)
         return openPage(option, key, value)
@@ -298,9 +290,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment?> openPage(clazz: Class<T>?, key: String?, value: String?): Fragment? {
-        return PageOption(clazz)
-            .putString(key, value)
-            .open(this)
+        return PageOption(clazz).putString(key, value).open(this)
     }
 
     /**
@@ -314,10 +304,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment?> openPageForResult(
-        clazz: Class<T>?,
-        key: String?,
-        value: Any?,
-        requestCode: Int
+        clazz: Class<T>?, key: String?, value: Any?, requestCode: Int
     ): Fragment? {
         val option = PageOption(clazz).setRequestCode(requestCode)
         return openPage(option, key, value)
@@ -334,15 +321,9 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment?> openPageForResult(
-        clazz: Class<T>?,
-        key: String?,
-        value: String?,
-        requestCode: Int
+        clazz: Class<T>?, key: String?, value: String?, requestCode: Int
     ): Fragment? {
-        return PageOption(clazz)
-            .setRequestCode(requestCode)
-            .putString(key, value)
-            .open(this)
+        return PageOption(clazz).setRequestCode(requestCode).putString(key, value).open(this)
     }
 
     /**
@@ -354,9 +335,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return
     </T> */
     fun <T : XPageFragment?> openPageForResult(clazz: Class<T>?, requestCode: Int): Fragment? {
-        return PageOption(clazz)
-            .setRequestCode(requestCode)
-            .open(this)
+        return PageOption(clazz).setRequestCode(requestCode).open(this)
     }
 
     /**

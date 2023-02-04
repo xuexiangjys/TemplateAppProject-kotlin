@@ -28,7 +28,7 @@ import com.zzhoujay.richtext.RichText
 class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
     BaseDialog(context, R.layout.dialog_guide_tips), View.OnClickListener,
     CompoundButton.OnCheckedChangeListener {
-    private var mTips: List<TipInfo>? = null
+    private var mTips: List<TipInfo> = emptyList()
     private var mIndex = -1
     private var mTvPrevious: TextView? = null
     private var mTvNext: TextView? = null
@@ -65,9 +65,9 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
      */
     private fun updateTips(tips: List<TipInfo>) {
         mTips = tips
-        if (mTips != null && mTips!!.isNotEmpty() && mTvContent != null) {
+        if (mTips.isNotEmpty() && mTvContent != null) {
             mIndex = 0
-            showRichText(mTips!![mIndex])
+            showRichText(mTips[mIndex])
         }
     }
 
@@ -77,15 +77,15 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
      * @param index 索引
      */
     private fun switchTipInfo(index: Int) {
-        if (mTips != null && mTips!!.isNotEmpty() && mTvContent != null) {
-            if (index >= 0 && index <= mTips!!.size - 1) {
-                showRichText(mTips!![index])
+        if (mTips.isNotEmpty() && mTvContent != null) {
+            if (index >= 0 && index <= mTips.size - 1) {
+                showRichText(mTips[index])
                 when (index) {
                     0 -> {
                         mTvPrevious?.isEnabled = false
                         mTvNext?.isEnabled = true
                     }
-                    mTips!!.size - 1 -> {
+                    mTips.size - 1 -> {
                         mTvPrevious?.isEnabled = true
                         mTvNext?.isEnabled = false
                     }
@@ -105,9 +105,7 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
      */
     private fun showRichText(tipInfo: TipInfo) {
         mTvTitle?.text = tipInfo.title
-        RichText.fromHtml(tipInfo.content)
-            .bind(this)
-            .into(mTvContent)
+        RichText.fromHtml(tipInfo.content).bind(this).into(mTvContent)
     }
 
     @SingleClick(300)
@@ -121,7 +119,7 @@ class GuideTipsDialog(context: Context?, tips: List<TipInfo>) :
                 switchTipInfo(mIndex)
             }
         } else if (id == R.id.tv_next) {
-            if (mIndex < mTips!!.size - 1) {
+            if (mIndex < mTips.size - 1) {
                 mIndex++
                 switchTipInfo(mIndex)
             }

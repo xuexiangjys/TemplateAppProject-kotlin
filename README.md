@@ -17,7 +17,7 @@ Android空壳模板工程(kotlin版本)，快速搭建（集成了XUI、XUtil、
 
 ## Star趋势图
 
-[![Stargazers over time](https://starchart.cc/xuexiangjys/TemplateAppProject.svg)](https://starchart.cc/xuexiangjys/TemplateAppProject)
+[![Stargazers over time](https://starchart.cc/xuexiangjys/TemplateAppProject-kotlin.svg)](https://starchart.cc/xuexiangjys/TemplateAppProject-kotlin)
 
 ## 集成介绍（请star支持）
 
@@ -62,7 +62,7 @@ Android空壳模板工程(kotlin版本)，快速搭建（集成了XUI、XUtil、
 1.克隆项目
 
 ```
-git clone https://github.com/xuexiangjys/TemplateAppProject.git
+git clone https://github.com/xuexiangjys/TemplateAppProject-kotlin.git
 ```
 
 2.修改项目名（文件夹名），并删除目录下的.git文件夹（隐藏文件）

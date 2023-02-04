@@ -166,7 +166,7 @@ object Utils {
      * @param isImmersive 是否沉浸式
      */
     @JvmStatic
-    fun gotoProtocol(fragment: XPageFragment?, isPrivacy: Boolean, isImmersive: Boolean) {
+    fun gotoProtocol(fragment: XPageFragment, isPrivacy: Boolean, isImmersive: Boolean) {
         PageOption.to(ServiceProtocolFragment::class.java)
             .putString(
                 ServiceProtocolFragment.KEY_PROTOCOL_TITLE,
@@ -175,7 +175,7 @@ object Utils {
                 )
             )
             .putBoolean(ServiceProtocolFragment.KEY_IS_IMMERSIVE, isImmersive)
-            .open(fragment!!)
+            .open(fragment)
     }
 
     /**

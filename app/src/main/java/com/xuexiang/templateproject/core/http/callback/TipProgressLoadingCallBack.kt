@@ -37,7 +37,7 @@ abstract class TipProgressLoadingCallBack<T> : ProgressLoadingCallBack<T> {
      */
     private var mUrl: String? = null
 
-    constructor(fragment: BaseFragment<*>) : super(fragment.progressLoader) {}
+    constructor(fragment: BaseFragment<*>) : super(fragment.getProgressLoader()) {}
     constructor(iProgressLoader: IProgressLoader?) : super(iProgressLoader) {}
     constructor(req: XHttpRequest, iProgressLoader: IProgressLoader?) : this(
         req.url,

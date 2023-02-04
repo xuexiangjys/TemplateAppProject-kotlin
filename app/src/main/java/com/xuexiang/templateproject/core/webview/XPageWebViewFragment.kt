@@ -142,15 +142,19 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
     }
 
     override fun initListeners() {
-        binding!!.includeTitle.ivBack.setOnClickListener(this)
-        binding!!.includeTitle.ivFinish.setOnClickListener(this)
-        binding!!.includeTitle.ivMore.setOnClickListener(this)
+        binding?.includeTitle?.let {
+            it.ivBack.setOnClickListener(this)
+            it.ivFinish.setOnClickListener(this)
+            it.ivMore.setOnClickListener(this)
+        }
     }
 
     private fun pageNavigator(tag: Int) {
         //返回的导航按钮
-        binding!!.includeTitle.ivBack.visibility = tag
-        binding!!.includeTitle.viewLine.visibility = tag
+        binding?.includeTitle?.let {
+            it.ivBack.visibility = tag
+            it.viewLine.visibility = tag
+        }
     }
 
     @SingleClick
@@ -343,13 +347,13 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
         }
 
         override fun onReceivedTitle(view: WebView, title: String) {
-            var title = title
-            super.onReceivedTitle(view, title)
-            if (!TextUtils.isEmpty(title)) {
-                if (title.length > 10) {
-                    title = title.substring(0, 10) + "..."
+            var titleTemp = title
+            super.onReceivedTitle(view, titleTemp)
+            if (!TextUtils.isEmpty(titleTemp)) {
+                if (titleTemp.length > 10) {
+                    titleTemp = titleTemp.substring(0, 10) + "..."
                 }
-                binding!!.includeTitle.toolbarTitle.text = title
+                binding?.includeTitle?.toolbarTitle?.text = titleTemp
             }
         }
     }
@@ -433,39 +437,41 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
     private fun showPoPup(view: View) {
         if (mPopupMenu == null) {
             mPopupMenu = PopupMenu(requireContext(), view)
-            mPopupMenu!!.inflate(R.menu.menu_toolbar_web)
-            mPopupMenu!!.setOnMenuItemClickListener(mOnMenuItemClickListener)
+            mPopupMenu?.inflate(R.menu.menu_toolbar_web)
+            mPopupMenu?.setOnMenuItemClickListener(mOnMenuItemClickListener)
         }
-        mPopupMenu!!.show()
+        mPopupMenu?.show()
     }
 
     /**
      * 菜单事件
      */
     private val mOnMenuItemClickListener = PopupMenu.OnMenuItemClickListener { item ->
-        val id = item.itemId
-        if (id == R.id.refresh) {
-            if (mAgentWeb != null) {
-                mAgentWeb!!.urlLoader.reload() // 刷新
+        when (item.itemId) {
+            R.id.refresh -> {
+                mAgentWeb?.urlLoader?.reload() // 刷新
+                true
             }
-            return@OnMenuItemClickListener true
-        } else if (id == R.id.copy) {
-            if (mAgentWeb != null) {
-                toCopy(context, mAgentWeb!!.webCreator.webView.url)
+            R.id.copy -> {
+                mAgentWeb?.let {
+                    toCopy(context, it.webCreator.webView.url)
+                }
+                true
             }
-            return@OnMenuItemClickListener true
-        } else if (id == R.id.default_browser) {
-            if (mAgentWeb != null) {
-                openBrowser(mAgentWeb!!.webCreator.webView.url)
+            R.id.default_browser -> {
+                mAgentWeb?.let {
+                    openBrowser(it.webCreator.webView.url)
+                }
+                true
             }
-            return@OnMenuItemClickListener true
-        } else if (id == R.id.share) {
-            if (mAgentWeb != null) {
-                shareWebUrl(mAgentWeb!!.webCreator.webView.url)
+            R.id.share -> {
+                mAgentWeb?.let {
+                    shareWebUrl(it.webCreator.webView.url)
+                }
+                true
             }
-            return@OnMenuItemClickListener true
+            else -> false
         }
-        false
     }
 
     /**

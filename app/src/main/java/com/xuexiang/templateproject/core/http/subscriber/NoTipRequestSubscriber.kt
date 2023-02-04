@@ -34,8 +34,8 @@ abstract class NoTipRequestSubscriber<T> : BaseSubscriber<T> {
      */
     private var mUrl: String? = null
 
-    constructor() {}
-    constructor(req: XHttpRequest) : this(req.url) {}
+    constructor()
+    constructor(req: XHttpRequest) : this(req.url)
     constructor(url: String?) {
         mUrl = url
     }

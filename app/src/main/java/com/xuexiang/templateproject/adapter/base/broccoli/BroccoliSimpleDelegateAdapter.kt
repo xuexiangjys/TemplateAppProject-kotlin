@@ -22,7 +22,6 @@ import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter
 import com.xuexiang.templateproject.adapter.base.delegate.XDelegateAdapter
 import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder
 import me.samlss.broccoli.Broccoli
-import java.util.*
 
 /**
  * 使用Broccoli占位的基础适配器
@@ -37,20 +36,18 @@ abstract class BroccoliSimpleDelegateAdapter<T> : SimpleDelegateAdapter<T> {
     private var mHasLoad = false
     private val mBroccoliMap: MutableMap<View, Broccoli> = HashMap()
 
-    constructor(layoutId: Int, layoutHelper: LayoutHelper) : super(layoutId, layoutHelper) {}
+    constructor(layoutId: Int, layoutHelper: LayoutHelper) : super(layoutId, layoutHelper)
     constructor(layoutId: Int, layoutHelper: LayoutHelper, list: Collection<T>?) : super(
         layoutId,
         layoutHelper,
         list
-    ) {
-    }
+    )
 
-    constructor(layoutId: Int, layoutHelper: LayoutHelper?, data: Array<T>?) : super(
+    constructor(layoutId: Int, layoutHelper: LayoutHelper, data: Array<T>?) : super(
         layoutId,
-        layoutHelper!!,
+        layoutHelper,
         data
-    ) {
-    }
+    )
 
     override fun bindData(holder: RecyclerViewHolder, position: Int, item: T) {
         var broccoli = mBroccoliMap[holder.itemView]

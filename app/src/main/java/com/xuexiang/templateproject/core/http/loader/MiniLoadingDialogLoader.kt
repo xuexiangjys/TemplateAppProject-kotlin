@@ -42,6 +42,7 @@ class MiniLoadingDialogLoader @JvmOverloads constructor(
      * 进度框取消监听
      */
     private var mOnProgressCancelListener: OnProgressCancelListener? = null
+
     override fun isLoading(): Boolean {
         return mDialog != null && mDialog.isShowing
     }
@@ -63,12 +64,10 @@ class MiniLoadingDialogLoader @JvmOverloads constructor(
     }
 
     override fun setCancelable(flag: Boolean) {
-        mDialog!!.setCancelable(flag)
+        mDialog?.setCancelable(flag)
         if (flag) {
-            mDialog.setOnCancelListener {
-                if (mOnProgressCancelListener != null) {
-                    mOnProgressCancelListener!!.onCancelProgress()
-                }
+            mDialog?.setOnCancelListener {
+                mOnProgressCancelListener?.onCancelProgress()
             }
         }
     }
