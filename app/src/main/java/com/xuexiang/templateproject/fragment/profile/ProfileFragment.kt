@@ -39,9 +39,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding?>(), OnSuperTextView
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentProfileBinding {
-        return FragmentProfileBinding.inflate(inflater, container, false)
+        return FragmentProfileBinding.inflate(inflater, container, attachToRoot)
     }
 
     /**

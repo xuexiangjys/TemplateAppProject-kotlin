@@ -57,8 +57,12 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
     var binding: Binding? = null
         protected set
 
-    override fun inflateView(inflater: LayoutInflater, container: ViewGroup): View? {
-        binding = viewBindingInflate(inflater, container)
+    override fun onCreateContentView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        attachToRoot: Boolean
+    ): View? {
+        binding = viewBindingInflate(inflater, container, attachToRoot)
         onViewBindingUpdate(binding)
         return binding?.root
     }
@@ -71,7 +75,9 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
      * @return ViewBinding
      */
     protected abstract fun viewBindingInflate(
-        inflater: LayoutInflater, container: ViewGroup
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): Binding
 
     /**
@@ -90,7 +96,7 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
 
     protected open fun initTitle(): TitleBar? {
         return TitleUtils.addTitleBarDynamic(
-            rootView as ViewGroup, pageTitle
+            toolbarContainer, pageTitle
         ) { popToBack() }
     }
 
@@ -203,33 +209,15 @@ abstract class BaseFragment<Binding : ViewBinding?> : XPageFragment() {
 
     private fun openPage(option: PageOption, key: String?, value: Any?): Fragment? {
         when (value) {
-            is Int -> {
-                option.putInt(key, value)
-            }
-            is Float -> {
-                option.putFloat(key, value)
-            }
-            is String -> {
-                option.putString(key, value)
-            }
-            is Boolean -> {
-                option.putBoolean(key, value)
-            }
-            is Long -> {
-                option.putLong(key, value)
-            }
-            is Double -> {
-                option.putDouble(key, value)
-            }
-            is Parcelable -> {
-                option.putParcelable(key, value)
-            }
-            is Serializable -> {
-                option.putSerializable(key, value)
-            }
-            else -> {
-                option.putString(key, serializeObject(value))
-            }
+            is Int -> option.putInt(key, value)
+            is Float -> option.putFloat(key, value)
+            is String -> option.putString(key, value)
+            is Boolean -> option.putBoolean(key, value)
+            is Long -> option.putLong(key, value)
+            is Double -> option.putDouble(key, value)
+            is Parcelable -> option.putParcelable(key, value)
+            is Serializable -> option.putSerializable(key, value)
+            else -> option.putString(key, serializeObject(value))
         }
         return option.open(this)
     }

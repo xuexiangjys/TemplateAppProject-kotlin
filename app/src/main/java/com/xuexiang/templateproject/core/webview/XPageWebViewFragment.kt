@@ -73,11 +73,13 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
     private var mAgentWeb: AgentWeb? = null
     private var mPopupMenu: PopupMenu? = null
     private var mDownloadingService: DownloadingService? = null
+
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentAgentwebBinding {
-        return FragmentAgentwebBinding.inflate(inflater, container, false)
+        return FragmentAgentwebBinding.inflate(inflater, container, attachToRoot)
     }
 
     override fun initTitle(): TitleBar? {
@@ -387,9 +389,7 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
             //intent:// scheme的处理 如果返回false ， 则交给 DefaultWebClient 处理 ， 默认会打开该Activity  ， 如果Activity不存在则跳到应用市场上去.  true 表示拦截
             //例如优酷视频播放 ，intent://play?...package=com.youku.phone;end;
             //优酷想唤起自己应用播放该视频 ， 下面拦截地址返回 true  则会在应用内 H5 播放 ，禁止优酷唤起播放该视频， 如果返回 false ， DefaultWebClient  会根据intent 协议处理 该地址 ， 首先匹配该应用存不存在 ，如果存在 ， 唤起该应用播放 ， 如果不存在 ， 则跳到应用市场下载该应用 .
-            return if (url.startsWith("intent://") && url.contains("com.youku.phone")) {
-                true
-            } else false
+            return url.startsWith("intent://") && url.contains("com.youku.phone")
         }
 
         override fun onPageStarted(view: WebView, url: String, favicon: Bitmap) {
@@ -512,8 +512,8 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
      * @param text
      */
     private fun toCopy(context: Context?, text: String) {
-        val manager = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            ?: return
+        val manager =
+            requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         manager.setPrimaryClip(ClipData.newPlainText(null, text))
     }
 
@@ -579,9 +579,7 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnCl
                     return true
                 }
                 // 执行 DefaultWebClient#shouldOverrideUrlLoading
-                return if (super.shouldOverrideUrlLoading(view, url)) {
-                    true
-                } else false
+                return super.shouldOverrideUrlLoading(view, url)
                 // do you work
             }
 

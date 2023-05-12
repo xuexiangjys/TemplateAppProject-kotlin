@@ -50,9 +50,10 @@ class ServiceProtocolFragment : BaseFragment<FragmentServiceProtocolBinding?>() 
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentServiceProtocolBinding {
-        return FragmentServiceProtocolBinding.inflate(inflater, container, false)
+        return FragmentServiceProtocolBinding.inflate(inflater, container, attachToRoot)
     }
 
     override fun initTitle(): TitleBar? {

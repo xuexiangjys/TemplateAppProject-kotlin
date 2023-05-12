@@ -40,9 +40,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), OnSuperTextVi
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentSettingsBinding {
-        return FragmentSettingsBinding.inflate(inflater, container, false)
+        return FragmentSettingsBinding.inflate(inflater, container, attachToRoot)
     }
 
     override fun initViews() {

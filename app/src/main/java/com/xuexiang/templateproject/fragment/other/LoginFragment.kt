@@ -54,9 +54,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListene
     private var mCountDownHelper: CountDownButtonHelper? = null
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentLoginBinding {
-        return FragmentLoginBinding.inflate(inflater, container, false)
+        return FragmentLoginBinding.inflate(inflater, container, attachToRoot)
     }
 
     override fun initTitle(): TitleBar? {

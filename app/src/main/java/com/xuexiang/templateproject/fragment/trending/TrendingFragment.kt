@@ -33,9 +33,10 @@ class TrendingFragment : BaseFragment<FragmentTrendingBinding?>() {
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentTrendingBinding {
-        return FragmentTrendingBinding.inflate(inflater, container, false)
+        return FragmentTrendingBinding.inflate(inflater, container, attachToRoot)
     }
 
     /**

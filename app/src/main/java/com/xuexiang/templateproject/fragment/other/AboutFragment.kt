@@ -82,8 +82,9 @@ class AboutFragment : BaseFragment<FragmentAboutBinding?>() {
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentAboutBinding {
-        return FragmentAboutBinding.inflate(inflater, container, false)
+        return FragmentAboutBinding.inflate(inflater, container, attachToRoot)
     }
 }

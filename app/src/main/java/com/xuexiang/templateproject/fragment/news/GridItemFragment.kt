@@ -36,11 +36,13 @@ class GridItemFragment : BaseFragment<FragmentGridItemBinding?>() {
     @JvmField
     @AutoWired(name = KEY_TITLE_NAME)
     var title: String? = null
+
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentGridItemBinding {
-        return FragmentGridItemBinding.inflate(inflater, container, false)
+        return FragmentGridItemBinding.inflate(inflater, container, attachToRoot)
     }
 
     override fun initArgs() {

@@ -42,7 +42,7 @@ abstract class BaseContainerFragment : XPageContainerListFragment() {
 
     private fun initTitle(): TitleBar {
         return TitleUtils.addTitleBarDynamic(
-            rootView as ViewGroup,
+            toolbarContainer,
             pageTitle
         ) { popToBack() }
     }

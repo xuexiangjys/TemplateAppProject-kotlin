@@ -62,9 +62,10 @@ class NewsFragment : BaseFragment<FragmentNewsBinding?>() {
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,
-        container: ViewGroup
+        container: ViewGroup?,
+        attachToRoot: Boolean
     ): FragmentNewsBinding {
-        return FragmentNewsBinding.inflate(inflater, container, false)
+        return FragmentNewsBinding.inflate(inflater, container, attachToRoot)
     }
 
     /**
