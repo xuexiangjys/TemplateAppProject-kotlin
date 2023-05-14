@@ -15,32 +15,25 @@
   ~
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ScrollViewStyle"
     android:background="@color/xui_config_color_white"
-    android:orientation="vertical">
+    android:paddingTop="@dimen/config_margin_10dp">
 
-    <androidx.core.widget.NestedScrollView
-        style="@style/ScrollViewStyle"
-        android:layout_marginTop="@dimen/config_margin_10dp">
+    <LinearLayout
+        style="@style/Container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
-            style="@style/Container"
+        <TextView
+            android:id="@+id/tv_protocol_text"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="@dimen/config_margin_8dp"
+            android:singleLine="false"
+            android:textSize="13sp" />
 
-            <TextView
-                android:id="@+id/tv_protocol_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="@dimen/config_margin_8dp"
-                android:singleLine="false"
-                android:textSize="13sp" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView>
-
-</LinearLayout>
+</androidx.core.widget.NestedScrollView>

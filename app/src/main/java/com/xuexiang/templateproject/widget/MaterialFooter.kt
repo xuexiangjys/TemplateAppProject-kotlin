@@ -16,18 +16,18 @@
  */
 package com.xuexiang.templateproject.widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import kotlin.jvm.JvmOverloads
-import android.widget.ProgressBar
-import com.scwang.smartrefresh.layout.api.RefreshFooter
 import android.widget.FrameLayout
-import com.scwang.smartrefresh.layout.util.DensityUtil
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.constant.RefreshState
-import com.scwang.smartrefresh.layout.api.RefreshKernel
+import android.widget.ProgressBar
+import com.scwang.smart.refresh.layout.api.RefreshFooter
+import com.scwang.smart.refresh.layout.api.RefreshKernel
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.constant.RefreshState
+import com.scwang.smart.refresh.layout.constant.SpinnerStyle
+import com.xuexiang.xui.utils.DensityUtils
 
 /**
  * Material风格的上拉加载
@@ -35,6 +35,7 @@ import com.scwang.smartrefresh.layout.api.RefreshKernel
  * @author xuexiang
  * @since 2019-08-03 11:14
  */
+@SuppressLint("RestrictedApi")
 class MaterialFooter @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
     ProgressBar(context, attrs), RefreshFooter {
     private fun initView() {
@@ -43,7 +44,7 @@ class MaterialFooter @JvmOverloads constructor(context: Context?, attrs: Attribu
             FrameLayout.LayoutParams.MATCH_PARENT,
             FrameLayout.LayoutParams.WRAP_CONTENT
         )
-        setPadding(0, DensityUtil.dp2px(10f), 0, DensityUtil.dp2px(10f))
+        setPadding(0, DensityUtils.dp2px(context, 10f), 0, DensityUtils.dp2px(context, 10f))
         layoutParams = params
     }
 
@@ -90,6 +91,10 @@ class MaterialFooter @JvmOverloads constructor(context: Context?, attrs: Attribu
     override fun onReleased(refreshLayout: RefreshLayout, height: Int, maxDragHeight: Int) {}
     override fun onHorizontalDrag(percentX: Float, offsetX: Int, offsetMax: Int) {}
     override fun isSupportHorizontalDrag(): Boolean {
+        return false
+    }
+
+    override fun autoOpen(duration: Int, dragRate: Float, animationOnly: Boolean): Boolean {
         return false
     }
 

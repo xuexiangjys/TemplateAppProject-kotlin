@@ -24,7 +24,7 @@ import com.alibaba.android.vlayout.DelegateAdapter
 import com.alibaba.android.vlayout.VirtualLayoutManager
 import com.alibaba.android.vlayout.layout.GridLayoutHelper
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper
-import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.xuexiang.templateproject.R
 import com.xuexiang.templateproject.adapter.base.broccoli.BroccoliSimpleDelegateAdapter
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter
