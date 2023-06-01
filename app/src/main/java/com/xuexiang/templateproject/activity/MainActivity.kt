@@ -59,7 +59,7 @@ import com.xuexiang.xutil.display.Colors
  * @author xuexiang
  * @since 2019-07-07 23:53
  */
-class MainActivity : BaseActivity<ActivityMainBinding?>(), View.OnClickListener,
+class MainActivity : BaseActivity<ActivityMainBinding>(), View.OnClickListener,
     BottomNavigationView.OnNavigationItemSelectedListener, OnClick2ExitListener,
     Toolbar.OnMenuItemClickListener {
 

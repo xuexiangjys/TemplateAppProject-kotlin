@@ -38,7 +38,7 @@ import com.xuexiang.xui.utils.ResUtils
  * @author XUE
  * @since 2019/3/22 11:21
  */
-open class BaseActivity<Binding : ViewBinding?> : XPageActivity() {
+open class BaseActivity<Binding : ViewBinding> : XPageActivity() {
     /**
      * 获取Binding
      *

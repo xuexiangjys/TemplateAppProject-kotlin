@@ -56,7 +56,7 @@ import me.samlss.broccoli.Broccoli
  * @since 2019-10-30 00:15
  */
 @Page(anim = CoreAnim.none)
-class NewsFragment : BaseFragment<FragmentNewsBinding?>() {
+class NewsFragment : BaseFragment<FragmentNewsBinding>() {
 
     private var mNewsAdapter: SimpleDelegateAdapter<NewInfo>? = null
 

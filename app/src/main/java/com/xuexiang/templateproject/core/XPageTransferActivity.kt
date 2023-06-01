@@ -32,7 +32,7 @@ import com.xuexiang.xutil.common.StringUtils
  * @since 2019-07-06 9:37
  */
 @Router(path = "/xpage/transfer")
-class XPageTransferActivity : BaseActivity<ViewBinding?>() {
+class XPageTransferActivity : BaseActivity<ViewBinding>() {
 
     @JvmField
     @AutoWired(name = "pageName")

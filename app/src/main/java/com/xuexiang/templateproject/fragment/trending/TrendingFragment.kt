@@ -29,7 +29,7 @@ import com.xuexiang.xui.widget.actionbar.TitleBar
  * @since 2019-10-30 00:19
  */
 @Page(anim = CoreAnim.none)
-class TrendingFragment : BaseFragment<FragmentTrendingBinding?>() {
+class TrendingFragment : BaseFragment<FragmentTrendingBinding>() {
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,

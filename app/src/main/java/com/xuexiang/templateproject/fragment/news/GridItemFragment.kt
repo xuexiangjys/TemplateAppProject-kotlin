@@ -29,7 +29,7 @@ import com.xuexiang.xrouter.launcher.XRouter
  * @since 2021/6/30 1:21 AM
  */
 @Page
-class GridItemFragment : BaseFragment<FragmentGridItemBinding?>() {
+class GridItemFragment : BaseFragment<FragmentGridItemBinding>() {
     /**
      * 自动注入参数，不能是private
      */

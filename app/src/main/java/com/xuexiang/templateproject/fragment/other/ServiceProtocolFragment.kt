@@ -36,7 +36,7 @@ import com.xuexiang.xutil.resource.ResourceUtils
  * @since 2021/5/18 1:35 AM
  */
 @Page
-class ServiceProtocolFragment : BaseFragment<FragmentServiceProtocolBinding?>() {
+class ServiceProtocolFragment : BaseFragment<FragmentServiceProtocolBinding>() {
     @JvmField
     @AutoWired(name = KEY_PROTOCOL_TITLE)
     var title: String? = null

@@ -35,7 +35,7 @@ import com.xuexiang.xui.widget.textview.supertextview.SuperTextView.OnSuperTextV
  * @since 2019-10-30 00:18
  */
 @Page(anim = CoreAnim.none)
-class ProfileFragment : BaseFragment<FragmentProfileBinding?>(), OnSuperTextViewClickListener {
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(), OnSuperTextViewClickListener {
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,

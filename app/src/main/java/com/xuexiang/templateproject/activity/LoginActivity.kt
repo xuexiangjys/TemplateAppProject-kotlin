@@ -31,7 +31,7 @@ import com.xuexiang.xutil.display.Colors
  * @author xuexiang
  * @since 2019-11-17 22:21
  */
-class LoginActivity : BaseActivity<ViewBinding?>() {
+class LoginActivity : BaseActivity<ViewBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         openPage(LoginFragment::class.java, intent.extras)

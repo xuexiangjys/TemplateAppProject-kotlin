@@ -27,7 +27,7 @@ import com.xuexiang.templateproject.core.BaseFragment
  * @author xuexiang
  * @since 2019/5/28 10:22
  */
-abstract class BaseWebViewFragment : BaseFragment<ViewBinding?>() {
+abstract class BaseWebViewFragment : BaseFragment<ViewBinding>() {
 
     protected var mAgentWeb: AgentWeb? = null
 

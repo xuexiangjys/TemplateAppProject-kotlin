@@ -48,7 +48,7 @@ import com.xuexiang.xutil.app.ActivityUtils
  * @since 2019-11-17 22:15
  */
 @Page(anim = CoreAnim.none)
-class LoginFragment : BaseFragment<FragmentLoginBinding?>(), View.OnClickListener {
+class LoginFragment : BaseFragment<FragmentLoginBinding>(), View.OnClickListener {
 
     private var mJumpView: View? = null
     private var mCountDownHelper: CountDownButtonHelper? = null

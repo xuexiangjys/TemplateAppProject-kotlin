@@ -69,7 +69,7 @@ import java.util.*
  * @since 2019-05-26 18:15
  */
 @Page(params = [AgentWebFragment.KEY_URL])
-class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding?>(), View.OnClickListener {
+class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding>(), View.OnClickListener {
     private var mAgentWeb: AgentWeb? = null
     private var mPopupMenu: PopupMenu? = null
     private var mDownloadingService: DownloadingService? = null

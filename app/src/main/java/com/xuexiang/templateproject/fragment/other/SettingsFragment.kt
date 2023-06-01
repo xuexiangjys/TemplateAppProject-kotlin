@@ -36,7 +36,7 @@ import com.xuexiang.xutil.XUtil
  * @since 2019-10-15 22:38
  */
 @Page(name = "设置")
-class SettingsFragment : BaseFragment<FragmentSettingsBinding?>(), OnSuperTextViewClickListener {
+class SettingsFragment : BaseFragment<FragmentSettingsBinding>(), OnSuperTextViewClickListener {
 
     override fun viewBindingInflate(
         inflater: LayoutInflater,

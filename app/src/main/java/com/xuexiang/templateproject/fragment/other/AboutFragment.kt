@@ -34,7 +34,7 @@ import java.util.*
  * @since 2019-10-30 00:02
  */
 @Page(name = "关于")
-class AboutFragment : BaseFragment<FragmentAboutBinding?>() {
+class AboutFragment : BaseFragment<FragmentAboutBinding>() {
 
     override fun initViews() {
         binding?.tvVersion?.text = String.format("版本号：%s", AppUtils.getAppVersionName())
