@@ -513,7 +513,7 @@ class XPageWebViewFragment : BaseFragment<FragmentAgentwebBinding>(), View.OnCli
      */
     private fun toCopy(context: Context?, text: String) {
         val manager =
-            requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            context?.applicationContext?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         manager.setPrimaryClip(ClipData.newPlainText(null, text))
     }
 

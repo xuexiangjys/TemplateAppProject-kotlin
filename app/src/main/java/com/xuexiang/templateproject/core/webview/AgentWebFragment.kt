@@ -523,7 +523,7 @@ open class AgentWebFragment : Fragment(), FragmentKeyDown {
      * @param text
      */
     private fun toCopy(context: Context?, text: String) {
-        val manager = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val manager = context?.applicationContext?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         manager.setPrimaryClip(ClipData.newPlainText(null, text))
     }
 
